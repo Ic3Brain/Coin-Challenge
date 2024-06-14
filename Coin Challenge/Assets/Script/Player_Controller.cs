@@ -22,10 +22,12 @@ public class Player_Controller : MonoBehaviour
     float currentVelocity;
     float smoothTime = 0.05f;
 
+    public bool playerTouchTheGround = true;
+
 
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     
@@ -38,7 +40,20 @@ public class Player_Controller : MonoBehaviour
     {
         inputDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         inputDir = inputDir.normalized;
+        PlayerJump();
+        
+        /*RaycastHit hit;
+
+        Debug.DrawRay(transform.position, transform.up * 10, Color.red);
+
+        if (Physics.Raycast(transform.position, transform.up, out hit, 10))
+        {
+            Debug.Log("le raycast touche un objet !");
+        }*/
+        
     }
+
+    
     
     void MovePlayer()
     {
@@ -62,5 +77,22 @@ public class Player_Controller : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, playerAngleDamp, 0);
     }
 
+    void PlayerJump()
+    {
+        if(Input.GetButtonDown("Jump") && playerTouchTheGround)
+        {
+            rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
+            playerTouchTheGround = false;
+        }
+    }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        playerTouchTheGround = true;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        playerTouchTheGround = false;
+    }
 }

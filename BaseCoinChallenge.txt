@@ -1,0 +1,19 @@
+base jeu projet 3 : 
+
+chase par des tigres/ours, plateforme en mouvement 
+montagne pour le tour et délimiter la zone de jeu du joueur
+meat pour représenter les pièces,
+3 vies 
+Boss ours dans une grotte
+fin du niveau quand entrée dans la grotte
+sauter 3 fois sur le boss pour le tuer
+plateforme mouvement pour pouvoir sauter sur le boss
+pièce un peu partout dans la map 
+
+
+ 
+idée :
+object en plus si mob tué ?
+calculer nombre de pièce et commencer avec un objet bonus ?
+coffre bonus pour vie en plus ?
+ 
