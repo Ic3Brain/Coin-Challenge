@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 122996735}
   - component: {fileID: 122996736}
+  - component: {fileID: 122996737}
   - component: {fileID: 122996734}
   - component: {fileID: 122996733}
   m_Layer: 0
@@ -225,6 +226,19 @@ MonoBehaviour:
   strafeSpeed: 8
   rb: {fileID: 122996733}
   cam: {fileID: 963194227}
+  playerTouchTheGround: 1
+--- !u!114 &122996737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122996732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e20060e1145ee74f875d8067e324f11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &332561972
 GameObject:
   m_ObjectHideFlags: 3
@@ -780,7 +794,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880317042}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.078140184, y: -0.5500018, z: 0.05178693, w: 0.8298857}
+  m_LocalRotation: {x: 0.07814019, y: -0.5500018, z: 0.051786944, w: 0.8298857}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1131,7 +1145,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.3424, y: -0, z: 2.4333}
-  m_LocalScale: {x: 4.117784, y: 1.3182, z: 3.5362053}
+  m_LocalScale: {x: 12.088578, y: 3.8698397, z: 10.381238}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
