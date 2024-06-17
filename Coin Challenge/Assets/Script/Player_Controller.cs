@@ -21,8 +21,8 @@ public class Player_Controller : MonoBehaviour
 
     float currentVelocity;
     float smoothTime = 0.05f;
-
     public bool playerTouchTheGround = true;
+    public CollectingMeat collectingMeat;
 
 
     void Start()
@@ -94,5 +94,38 @@ public class Player_Controller : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         playerTouchTheGround = false;
+    }
+
+    public void OnTriggerEnter(Collider Col)
+    {
+        if(Col.gameObject.tag == "Meat1")
+        {
+            collectingMeat.meatCount++;
+            Col.gameObject.SetActive(false);
+        }
+        
+        if(Col.gameObject.tag == "Meat5")
+        {
+            collectingMeat.meatCount += +5;
+            Col.gameObject.SetActive(false);
+        }
+
+        if(Col.gameObject.tag == "Meat10")
+        {
+            collectingMeat.meatCount += +10;
+            Col.gameObject.SetActive(false);
+        }
+
+        if(Col.gameObject.tag == "Meat25")
+        {
+            collectingMeat.meatCount += +25;
+            Col.gameObject.SetActive(false);
+        }
+
+        if(Col.gameObject.tag == "Meat50")
+        {
+            collectingMeat.meatCount += +50;
+            Col.gameObject.SetActive(false);
+        }
     }
 }

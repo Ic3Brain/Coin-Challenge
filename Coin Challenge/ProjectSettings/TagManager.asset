@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Meat
+  - Meat5
+  - Meat1
+  - Meat10
+  - Meat25
+  - Meat50
   layers:
   - Default
   - TransparentFX

@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.Compression;
 using UnityEngine;
 
 public class AnimPlayerController : MonoBehaviour
 {
     Animator PlayerAnimator;
+    
     
     void Awake() 
     {
@@ -16,6 +18,8 @@ public class AnimPlayerController : MonoBehaviour
     {
         //animation du saut
         PlayerAnimator.SetFloat("Jump", Input.GetAxis("Jump"));
+        
+        
 
         //animation pour avancer 
         if(Input.GetAxis("Vertical") > 0)
@@ -56,6 +60,18 @@ public class AnimPlayerController : MonoBehaviour
         {
             PlayerAnimator.SetBool("StrafeLeft", false);
         }
+
+        //animation courir en avant 
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            PlayerAnimator.SetBool("RunForward", true);
+        }
+        else if(!Input.GetKey(KeyCode.LeftShift))
+        {
+            PlayerAnimator.SetBool("RunForward", false);
+        }
+
+        
     }
 }
 
