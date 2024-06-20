@@ -6,9 +6,15 @@ using UnityEngine.UI;
 
 public class CollectingMeat : MonoBehaviour
 {
-
+    public static CollectingMeat instance;
     public int meatCount;
     public TMP_Text meatText;
+
+    void Awake()
+    {
+        instance = this;
+    }
+    
     void Update()
     {
         meatText.text = "Meat Count : " + meatCount.ToString();

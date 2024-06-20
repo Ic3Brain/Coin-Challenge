@@ -176,9 +176,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3178786104909440173}
   - component: {fileID: 1654448686476657461}
+  - component: {fileID: -8198553235229694727}
   m_Layer: 0
   m_Name: Meat5
-  m_TagString: Meat5
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -221,3 +222,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.3607738, y: 0.43253195, z: 0.45559067}
   m_Center: {x: -0.018790245, y: 0.005637288, z: -0.0004899278}
+--- !u!114 &-8198553235229694727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2834595618098478615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc3559eb3dcf0e4589488c1208cfc94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 5

@@ -85,6 +85,7 @@ public class Player_Controller : MonoBehaviour
             playerTouchTheGround = false;
         }
     }
+    
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -98,34 +99,9 @@ public class Player_Controller : MonoBehaviour
 
     public void OnTriggerEnter(Collider Col)
     {
-        if(Col.gameObject.tag == "Meat1")
-        {
-            collectingMeat.meatCount++;
-            Col.gameObject.SetActive(false);
-        }
-        
-        if(Col.gameObject.tag == "Meat5")
-        {
-            collectingMeat.meatCount += +5;
-            Col.gameObject.SetActive(false);
-        }
-
-        if(Col.gameObject.tag == "Meat10")
-        {
-            collectingMeat.meatCount += +10;
-            Col.gameObject.SetActive(false);
-        }
-
-        if(Col.gameObject.tag == "Meat25")
-        {
-            collectingMeat.meatCount += +25;
-            Col.gameObject.SetActive(false);
-        }
-
-        if(Col.gameObject.tag == "Meat50")
-        {
-            collectingMeat.meatCount += +50;
-            Col.gameObject.SetActive(false);
-        }
+        ICollectable iCollectable = Col.gameObject.GetComponent<ICollectable>();
+        if(iCollectable == null)
+        return;
+        iCollectable.OnCollected();
     }
 }

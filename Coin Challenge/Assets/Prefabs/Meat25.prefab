@@ -93,9 +93,10 @@ GameObject:
   m_Component:
   - component: {fileID: 438032814907245965}
   - component: {fileID: 1368218769231232656}
+  - component: {fileID: -4555848564396676050}
   m_Layer: 0
   m_Name: Meat25
-  m_TagString: Meat25
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,6 +144,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.8298924, y: 0.7510323, z: 1.1441388}
   m_Center: {x: -0.043678522, y: 0.06770173, z: -0.0021840632}
+--- !u!114 &-4555848564396676050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963739717108670263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc3559eb3dcf0e4589488c1208cfc94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 25
 --- !u!1 &2526659193860572528
 GameObject:
   m_ObjectHideFlags: 0
