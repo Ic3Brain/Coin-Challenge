@@ -4,13 +4,16 @@ using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class IhmController : MonoBehaviour
 {
     [SerializeField]
     TMP_Text timerText;
     float elapsedTime;
+    public GameObject SoundPanel;
+    public GameObject SettingsPanel;
 
-    // Update is called once per frame
+    
+
     void Update()
     {
         elapsedTime += Time.deltaTime;
@@ -18,4 +21,27 @@ public class NewBehaviourScript : MonoBehaviour
         int seconds = Mathf.FloorToInt(elapsedTime % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
+
+    public void SoundPanelOn()
+    {
+        SoundPanel.SetActive(true);
+    }
+
+    public void SoundPanelOff()
+    {
+        SoundPanel.SetActive(false);
+    }
+
+    public void Resume()
+    {
+        SettingsPanel.SetActive(false);
+    }
+
+    public void SettingsPanelOn()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            SettingsPanel.SetActive(true);
+        }
+    }   
 }
