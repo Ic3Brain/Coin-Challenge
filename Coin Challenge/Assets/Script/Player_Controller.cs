@@ -23,6 +23,9 @@ public class Player_Controller : MonoBehaviour
     float smoothTime = 0.05f;
     public bool playerTouchTheGround = true;
     public CollectingMeat collectingMeat;
+    
+    [SerializeField]
+    GameManager gameManager;
 
 
     void Start()
@@ -41,6 +44,10 @@ public class Player_Controller : MonoBehaviour
         inputDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         inputDir = inputDir.normalized;
         PlayerJump();
+        if(transform.position.y < -4)
+        {
+            gameManager.OnGameOver();
+        }
         
         /*RaycastHit hit;
 

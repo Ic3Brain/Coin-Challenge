@@ -18,6 +18,7 @@ public class EnemyAi : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
     
+    
 
     private void Awake()
     {
@@ -73,9 +74,11 @@ public class EnemyAi : MonoBehaviour
         agent.SetDestination(transform.position);
 
         transform.LookAt(player);
-
+        
+        
         if(!alreadyAttacked)
-        {
+        {   
+            //code d'attaque a mettre ici
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }

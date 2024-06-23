@@ -11,6 +11,10 @@ public class IhmController : MonoBehaviour
     float elapsedTime;
     public GameObject SoundPanel;
     public GameObject SettingsPanel;
+    public GameObject GameOverPanel;
+    
+
+    
 
     
 
@@ -32,13 +36,22 @@ public class IhmController : MonoBehaviour
         SoundPanel.SetActive(false);
     }
 
-    public void Resume()
+    public void ResumeButton()
     {
         SettingsPanel.SetActive(false);
     }
 
-    public void SettingsPanelOn()
+    public void RestartButton()
     {
+        GameOverPanel.SetActive(false);
+    }
+
+    
+
+
+    public void SettingsPanelOn()
+    {   
+        Debug.Log("je suis appelé");
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             SettingsPanel.SetActive(true);
