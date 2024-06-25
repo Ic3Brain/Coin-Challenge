@@ -23,16 +23,20 @@ public class Player_Controller : MonoBehaviour
     float smoothTime = 0.05f;
     public bool playerTouchTheGround = true;
     public CollectingMeat collectingMeat;
+    public Vector3 localPosition;
+    public Quaternion localRotation;
     
     [SerializeField]
     GameManager gameManager;
 
 
-    void Start()
+   
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        localPosition = transform.localPosition;
+        localRotation = transform.localRotation;
     }
-
     
     void FixedUpdate()
     {
@@ -60,8 +64,15 @@ public class Player_Controller : MonoBehaviour
         
     }
 
+    //Au restart on vient chercher la position initial du joueur
+    public void Respawn()
+    {
+        transform.localPosition = localPosition;
+        transform.localRotation = localRotation;
+    }
+
     
-    
+    //Mouvement du joueur et de la caméra
     void MovePlayer()
     {
         //forwardDir
@@ -84,6 +95,7 @@ public class Player_Controller : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, playerAngleDamp, 0);
     }
 
+    //Saut du joueur
     void PlayerJump()
     {
         if(Input.GetButtonDown("Jump") && playerTouchTheGround)
@@ -93,22 +105,34 @@ public class Player_Controller : MonoBehaviour
         }
     }
     
-
+    //Activé si le joueur touche le sol
     private void OnCollisionEnter(Collision collision)
     {
         playerTouchTheGround = true;
     }
 
+    //Activé si le joueur ne touche pas le sol
     private void OnCollisionExit(Collision collision)
     {
         playerTouchTheGround = false;
     }
 
+    //On détecte la col avec des meat puis on les collecte
     public void OnTriggerEnter(Collider Col)
     {
         ICollectable iCollectable = Col.gameObject.GetComponent<ICollectable>();
         if(iCollectable == null)
         return;
         iCollectable.OnCollected();
+    }
+
+    //On détecte la col avec un enemy puis on le détruit
+    public void OnTriggerEnterEnemy(BoxCollider col)
+    {
+        if(col.gameObject.tag == "Enemy")
+        {   
+            Debug.Log("touché");
+            Destroy(gameObject);
+        }
     }
 }

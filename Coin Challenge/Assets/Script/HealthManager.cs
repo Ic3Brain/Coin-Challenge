@@ -13,7 +13,7 @@ public class HealthManager : MonoBehaviour
     public GameManager gameManager;
     
    
- 
+    
     void Update()
     {
         healthBarImage.fillAmount = health / maxHealth;

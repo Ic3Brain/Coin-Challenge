@@ -35,11 +35,13 @@ public class MainMenuController : MonoBehaviour
         #endif
     }
 
+    //Affiche le panel de gestion du son
     public void SoundPanelOn()
     {
         SoundPanel.SetActive(true);
     }
 
+    //Enlève le panel de gestion du son 
     public void SoundPanelOff()
     {
         SoundPanel.SetActive(false);

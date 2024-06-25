@@ -13,6 +13,9 @@ public class IhmController : MonoBehaviour
     public GameObject SettingsPanel;
     public GameObject GameOverPanel;
     
+    [SerializeField]
+    GameManager gameManager;
+    
 
     
 
@@ -20,35 +23,44 @@ public class IhmController : MonoBehaviour
 
     void Update()
     {
+        TimeChrono();
+    }
+
+    //Affiche le panel de gestion du son 
+    public void SoundPanelOn()
+    {
+        SoundPanel.SetActive(true);
+    }
+
+    //Enlève le panel de gestion du son 
+    public void SoundPanelOff()
+    {
+        SoundPanel.SetActive(false);
+    }
+
+    //Boutton resume qui reprend la partie/enlève la pause
+    public void ResumeButton()
+    {
+        SettingsPanel.SetActive(false);
+    }
+
+    //Boutton qui permet le restart de la partie quand mort
+    public void RestartButton()
+    {   
+        gameManager.Restart();
+        GameOverPanel.SetActive(false);
+    }
+
+    //Chrono qui permet de voir le temps
+    public void TimeChrono()
+    {
         elapsedTime += Time.deltaTime;
         int minutes = Mathf.FloorToInt(elapsedTime / 60);
         int seconds = Mathf.FloorToInt(elapsedTime % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    public void SoundPanelOn()
-    {
-        SoundPanel.SetActive(true);
-    }
-
-    public void SoundPanelOff()
-    {
-        SoundPanel.SetActive(false);
-    }
-
-    public void ResumeButton()
-    {
-        SettingsPanel.SetActive(false);
-    }
-
-    public void RestartButton()
-    {
-        GameOverPanel.SetActive(false);
-    }
-
-    
-
-
+    //Boutton echap qui permet d'afficher le Menu pause
     public void SettingsPanelOn()
     {   
         Debug.Log("je suis appelé");

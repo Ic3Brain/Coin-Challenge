@@ -10,6 +10,7 @@ TagManager:
   - Meat10
   - Meat25
   - Meat50
+  - Enemy
   layers:
   - Default
   - TransparentFX
