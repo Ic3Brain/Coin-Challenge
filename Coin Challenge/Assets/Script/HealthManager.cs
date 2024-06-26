@@ -10,22 +10,33 @@ public class HealthManager : MonoBehaviour
     public float maxHealth = 100f;
     public Image healthBarImage;
     public TMP_Text healthText;
-    public GameManager gameManager;
+    private IDamageable damageable;
     
-   
+   void Awake()
+   {
+        damageable = GetComponent<IDamageable>();
+        if(damageable == null)
+        {
+            Debug.LogError("l'interface idamageable n'a pas été trouvée");
+        }
+   }
     
-    void Update()
+    /*void Update()
     {
         healthBarImage.fillAmount = health / maxHealth;
         health = Mathf.Clamp(health, 0f, maxHealth);
         healthText.text = health + " / " + maxHealth;
-    }
-
-    public void AttackTest(int damageAmount)
-    {
-        health -= damageAmount;
-        gameManager.IsGameOver();
-    }
+    }*/
 
     
+
+
+    public void RemoveHealth(float lostHealth)
+    {
+        health -= lostHealth;
+        if(health <= 0)
+        {
+            damageable.OnKill();
+        }
+    }
 }

@@ -156,7 +156,10 @@ MonoBehaviour:
   cam: {fileID: 0}
   playerTouchTheGround: 1
   collectingMeat: {fileID: 0}
+  localPosition: {x: 0, y: 0, z: 0}
+  localRotation: {x: 0, y: 0, z: 0, w: 0}
   gameManager: {fileID: 0}
+  healthManager: {fileID: 0}
 --- !u!114 &6335921601610843906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +188,6 @@ MonoBehaviour:
   maxHealth: 100
   healthBarImage: {fileID: 0}
   healthText: {fileID: 0}
-  gameManager: {fileID: 0}
 --- !u!136 &7290570529877352612
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -235,7 +237,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!1 &6778247358212702159
 GameObject:
   m_ObjectHideFlags: 0

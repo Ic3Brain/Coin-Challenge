@@ -24,6 +24,7 @@ public class IhmController : MonoBehaviour
     void Update()
     {
         TimeChrono();
+        SettingsPanelOn();
     }
 
     //Affiche le panel de gestion du son 

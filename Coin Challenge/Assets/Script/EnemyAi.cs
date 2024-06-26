@@ -17,6 +17,8 @@ public class EnemyAi : MonoBehaviour
     bool alreadyAttacked;
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+    [SerializeField]
+    Animator animator;
     
     
 
@@ -48,6 +50,7 @@ public class EnemyAi : MonoBehaviour
 
         if(distanceToWalkPoint.magnitude < 1f)
             walkPointSet = false;
+            animator.SetFloat("ForwardMove", 0.5f);
     }
 
     //Vérifie si il peut avancer 
@@ -66,6 +69,7 @@ public class EnemyAi : MonoBehaviour
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
+        animator.SetFloat("ForwardMove", 1f);
     }
 
     //Attaque le joueur

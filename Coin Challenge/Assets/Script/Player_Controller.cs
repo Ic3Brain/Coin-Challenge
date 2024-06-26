@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class Player_Controller : MonoBehaviour
+public class Player_Controller : MonoBehaviour, IDamageable
 {
     Vector3 inputDir;
     
@@ -28,6 +28,8 @@ public class Player_Controller : MonoBehaviour
     
     [SerializeField]
     GameManager gameManager;
+    [SerializeField]
+    HealthManager healthManager;
 
 
    
@@ -134,5 +136,15 @@ public class Player_Controller : MonoBehaviour
             Debug.Log("touché");
             Destroy(gameObject);
         }
+    }
+
+    public void SetDamage(float damage)
+    {
+        healthManager.RemoveHealth(damage);
+    }
+
+    public void OnKill()
+    {
+        Debug.Log("je suis mort la honte");
     }
 }
