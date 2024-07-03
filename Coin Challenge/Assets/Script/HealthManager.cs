@@ -20,17 +20,6 @@ public class HealthManager : MonoBehaviour
             Debug.LogError("l'interface idamageable n'a pas été trouvée");
         }
    }
-    
-    /*void Update()
-    {
-        healthBarImage.fillAmount = health / maxHealth;
-        health = Mathf.Clamp(health, 0f, maxHealth);
-        healthText.text = health + " / " + maxHealth;
-    }*/
-
-    
-
-
     public void RemoveHealth(float lostHealth)
     {
         health -= lostHealth;
