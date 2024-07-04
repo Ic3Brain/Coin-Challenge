@@ -1289,6 +1289,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 122996735}
+    - target: {fileID: 2240894812554975141, guid: 68086796a9b896449bf9f880346830e6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2240894812554975141, guid: 68086796a9b896449bf9f880346830e6, type: 3}
+      propertyPath: healthManager
+      value: 
+      objectReference: {fileID: 603528665}
     - target: {fileID: 8468549588457754747, guid: 68086796a9b896449bf9f880346830e6, type: 3}
       propertyPath: m_Name
       value: Tiger 1 (1)
@@ -3628,7 +3636,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332561972}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000000067607955, y: 0.99713683, z: -0.07561822, w: 0.00000008915099}
+  m_LocalRotation: {x: 0.02139182, y: 0.95640546, z: -0.07252933, w: 0.2820825}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9455,7 +9463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &801333088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10510,7 +10518,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880317042}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000000067186674, y: 0.99559647, z: -0.09374313, w: 0.00000007135544}
+  m_LocalRotation: {x: 0.026519222, y: 0.954928, z: -0.08991385, w: 0.28164673}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11288,7 +11296,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 947147487}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000006139703, y: 0.9983446, z: -0.057516262, w: 0.00000010657054}
+  m_LocalRotation: {x: 0.016270915, y: 0.9575639, z: -0.05516681, w: 0.28242415}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11492,8 +11500,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000000067607977, y: 0.9971369, z: -0.07561823, w: 0.00000008915098}
-  m_LocalPosition: {x: 3.9999993, y: 4.75, z: 44}
+  m_LocalRotation: {x: 0.021391818, y: 0.95640546, z: -0.07252932, w: 0.28208247}
+  m_LocalPosition: {x: 18.829306, y: 4.75, z: 38.359776}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19618,7 +19626,7 @@ Transform:
   m_GameObject: {fileID: 1949950599}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.9999993, y: 4.75, z: 44}
+  m_LocalPosition: {x: 18.829306, y: 4.75, z: 38.359776}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20590,6 +20598,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 122996735}
+    - target: {fileID: 2240894812554975141, guid: 68086796a9b896449bf9f880346830e6, type: 3}
+      propertyPath: healthManager
+      value: 
+      objectReference: {fileID: 603528665}
     - target: {fileID: 8468549588457754747, guid: 68086796a9b896449bf9f880346830e6, type: 3}
       propertyPath: m_Name
       value: Tiger 1
@@ -21783,12 +21795,16 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1944259116288566761, guid: 70899f00419bc01429e2698e7160e96c, type: 3}
+      propertyPath: healthManager
+      value: 
+      objectReference: {fileID: 603528665}
+    - target: {fileID: 1944259116288566761, guid: 70899f00419bc01429e2698e7160e96c, type: 3}
       propertyPath: collectingMeat
       value: 
       objectReference: {fileID: 1910788500}
     - target: {fileID: 5407890563052415430, guid: 70899f00419bc01429e2698e7160e96c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 5407890563052415430, guid: 70899f00419bc01429e2698e7160e96c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -21796,7 +21812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5407890563052415430, guid: 70899f00419bc01429e2698e7160e96c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 5407890563052415430, guid: 70899f00419bc01429e2698e7160e96c, type: 3}
       propertyPath: m_LocalRotation.w

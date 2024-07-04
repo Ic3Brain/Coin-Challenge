@@ -64,7 +64,6 @@ public class IhmController : MonoBehaviour
     //Boutton echap qui permet d'afficher le Menu pause
     public void SettingsPanelOn()
     {   
-        Debug.Log("je suis appelé");
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             SettingsPanel.SetActive(true);

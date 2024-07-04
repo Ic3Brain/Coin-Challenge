@@ -19,6 +19,11 @@ public class EnemyAi : MonoBehaviour
     public bool playerInSightRange, playerInAttackRange;
     [SerializeField]
     Animator animator;
+    public int attackDamage = 25;
+    public Transform weapon;
+    [SerializeField]
+    HealthManager healthManager;
+    
     
     
 
@@ -83,6 +88,17 @@ public class EnemyAi : MonoBehaviour
         if(!alreadyAttacked)
         {   
             //code d'attaque a mettre ici
+            Collider[] hitPlayers = Physics.OverlapSphere(weapon.transform.position, attackRange, whatIsPlayer);
+
+        foreach (Collider playerCollider in hitPlayers)
+        {
+            HealthManager player = playerCollider.GetComponent<HealthManager>();
+            if (player != null)
+            {
+                healthManager.RemoveHealth(attackDamage);
+                Debug.Log("Player attacked! Damage: " + attackDamage);
+            }
+        }
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
