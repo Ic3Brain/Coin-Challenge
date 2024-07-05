@@ -12,6 +12,7 @@ public class HealthManager : MonoBehaviour
     public TMP_Text healthText;
     private IDamageable damageable;
     
+    
    void Awake()
    {
         damageable = GetComponent<IDamageable>();
@@ -20,6 +21,10 @@ public class HealthManager : MonoBehaviour
             Debug.LogError("l'interface idamageable n'a pas été trouvée");
         }
    }
+
+   
+
+
     public void RemoveHealth(float lostHealth)
     {
         health -= lostHealth;
@@ -27,6 +32,13 @@ public class HealthManager : MonoBehaviour
         {
             damageable.OnKill();
         }
+    }
+    
+    public void HealthController()
+    {
+        healthBarImage.fillAmount = health / maxHealth;
+        healthText.text = maxHealth + " / " + maxHealth;
+        health = Mathf.Clamp(health, 0f, maxHealth);
     }
 }
 

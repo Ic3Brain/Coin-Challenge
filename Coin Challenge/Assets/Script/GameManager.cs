@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     //Restart du jeu 
     public void Restart()
-    {
+    {   
         player_Controller.Respawn();
         collectingMeat.meatCount = 0;
         healthManager.health = healthManager.maxHealth;

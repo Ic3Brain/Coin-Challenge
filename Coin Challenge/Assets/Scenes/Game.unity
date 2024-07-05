@@ -1297,6 +1297,14 @@ PrefabInstance:
       propertyPath: healthManager
       value: 
       objectReference: {fileID: 603528665}
+    - target: {fileID: 4706527295174288910, guid: 68086796a9b896449bf9f880346830e6, type: 3}
+      propertyPath: healthText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706527295174288910, guid: 68086796a9b896449bf9f880346830e6, type: 3}
+      propertyPath: healthBarImage
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8468549588457754747, guid: 68086796a9b896449bf9f880346830e6, type: 3}
       propertyPath: m_Name
       value: Tiger 1 (1)
@@ -9566,6 +9574,7 @@ MonoBehaviour:
   SoundPanel: {fileID: 805881808}
   SettingsPanel: {fileID: 164345107}
   GameOverPanel: {fileID: 909724863}
+  time: 180
   gameManager: {fileID: 1910788502}
 --- !u!1 &805881808
 GameObject:
@@ -16478,7 +16487,7 @@ GameObject:
   - component: {fileID: 1551147696}
   - component: {fileID: 1551147695}
   m_Layer: 0
-  m_Name: TerrainGroup_1
+  m_Name: HuntTerrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18855,7 +18864,7 @@ GameObject:
   - component: {fileID: 1910287794}
   - component: {fileID: 1910287793}
   m_Layer: 0
-  m_Name: TerrainGroup_0
+  m_Name: MazeTerrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20602,6 +20611,14 @@ PrefabInstance:
       propertyPath: healthManager
       value: 
       objectReference: {fileID: 603528665}
+    - target: {fileID: 4706527295174288910, guid: 68086796a9b896449bf9f880346830e6, type: 3}
+      propertyPath: healthText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706527295174288910, guid: 68086796a9b896449bf9f880346830e6, type: 3}
+      propertyPath: healthBarImage
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8468549588457754747, guid: 68086796a9b896449bf9f880346830e6, type: 3}
       propertyPath: m_Name
       value: Tiger 1
@@ -21783,6 +21800,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 963194227}
     - target: {fileID: 1944259116288566761, guid: 70899f00419bc01429e2698e7160e96c, type: 3}
+      propertyPath: healthText
+      value: 
+      objectReference: {fileID: 564984396}
+    - target: {fileID: 1944259116288566761, guid: 70899f00419bc01429e2698e7160e96c, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1910788502}
@@ -21802,6 +21823,10 @@ PrefabInstance:
       propertyPath: collectingMeat
       value: 
       objectReference: {fileID: 1910788500}
+    - target: {fileID: 1944259116288566761, guid: 70899f00419bc01429e2698e7160e96c, type: 3}
+      propertyPath: healthBarImage
+      value: 
+      objectReference: {fileID: 1966999850}
     - target: {fileID: 5407890563052415430, guid: 70899f00419bc01429e2698e7160e96c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21

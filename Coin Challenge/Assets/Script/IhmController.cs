@@ -12,11 +12,14 @@ public class IhmController : MonoBehaviour
     public GameObject SoundPanel;
     public GameObject SettingsPanel;
     public GameObject GameOverPanel;
-    
+    public float time = 10f;
     [SerializeField]
     GameManager gameManager;
     
-
+    void Start()
+    {
+       StartCoroutine(TimeChrono());  
+    }
     
 
     
@@ -52,13 +55,18 @@ public class IhmController : MonoBehaviour
         GameOverPanel.SetActive(false);
     }
 
-    //Chrono qui permet de voir le temps
-    public void TimeChrono()
+    public IEnumerator TimeChrono()
     {
-        elapsedTime += Time.deltaTime;
-        int minutes = Mathf.FloorToInt(elapsedTime / 60);
-        int seconds = Mathf.FloorToInt(elapsedTime % 60);
-        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        while(time > 0)
+        {
+            time--;
+            yield return new WaitForSeconds(1);
+            timerText.text = string.Format("{0:0}:{1:00}", Mathf.Floor(time / 60), time % 60);
+        }
+        if(time == 0)
+        {
+            gameManager.OnGameOver();
+        }
     }
 
     //Boutton echap qui permet d'afficher le Menu pause

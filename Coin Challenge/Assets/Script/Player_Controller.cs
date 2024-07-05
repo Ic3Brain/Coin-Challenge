@@ -1,7 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
+using TMPro;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_Controller : MonoBehaviour, IDamageable
 {
@@ -30,6 +34,8 @@ public class Player_Controller : MonoBehaviour, IDamageable
     GameManager gameManager;
     [SerializeField]
     HealthManager healthManager;
+    
+
 
 
    
@@ -50,10 +56,9 @@ public class Player_Controller : MonoBehaviour, IDamageable
         inputDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         inputDir = inputDir.normalized;
         PlayerJump();
-        if(transform.position.y < -4)
-        {
-            gameManager.OnGameOver();
-        }
+        PlayerFall();
+        healthManager.HealthController();
+        
         
         /*RaycastHit hit;
 
@@ -71,6 +76,7 @@ public class Player_Controller : MonoBehaviour, IDamageable
     {
         transform.localPosition = localPosition;
         transform.localRotation = localRotation;
+        rb.constraints = RigidbodyConstraints.None;
     }
 
     
@@ -146,5 +152,14 @@ public class Player_Controller : MonoBehaviour, IDamageable
     public void OnKill()
     {
         Debug.Log("je suis mort la honte");
+    }
+
+    public void PlayerFall()
+    {
+        if(transform.position.y < -4)
+        {   
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            gameManager.OnGameOver();
+        }
     }
 }
