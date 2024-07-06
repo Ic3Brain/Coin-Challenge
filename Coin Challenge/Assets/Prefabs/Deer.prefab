@@ -100,9 +100,12 @@ MonoBehaviour:
   walkPointRange: 20
   sightRange: 10
   animator: {fileID: 0}
-  detectionRadius: 10
-  fleeSpeed: 12
-  fleeDuration: 5
+  anchor: {fileID: 0}
+  anchor1: {fileID: 0}
+  fov: 15
+  alertStage: 0
+  alertLevel: 0
+  fovAngle: 230
 --- !u!195 &1178296348500871685
 NavMeshAgent:
   m_ObjectHideFlags: 0

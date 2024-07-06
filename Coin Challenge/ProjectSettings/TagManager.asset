@@ -11,6 +11,7 @@ TagManager:
   - Meat25
   - Meat50
   - Enemy
+  - teleporter
   layers:
   - Default
   - TransparentFX

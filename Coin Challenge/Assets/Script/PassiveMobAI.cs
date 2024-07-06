@@ -4,6 +4,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
+
+public enum AlertStage
+    {
+        Peaceful,
+        Alerted
+    }
+
 public class PassiveMobAI : MonoBehaviour
 {
     public NavMeshAgent agent;
@@ -13,19 +20,25 @@ public class PassiveMobAI : MonoBehaviour
     bool walkPointSet;
     public float walkPointRange;
     public float sightRange;
-    public bool playerInSightRange 
+    /*public bool playerInSightRange 
     {
         get
         {
             return Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         }
-    }
+    }*/
 
     [SerializeField]
     Animator animator;
-    public float detectionRadius = 10.0f;
     [SerializeField]Transform anchor, anchor1;
-     
+    
+    
+    
+    
+    public float fov;
+    public AlertStage alertStage;
+    [Range(0, 1)] public float alertLevel; //Peaceful 0, Alerted 1
+    [Range(0, 360)]  public float fovAngle;
 
     
     
@@ -34,6 +47,8 @@ public class PassiveMobAI : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        alertStage = AlertStage.Peaceful;
+        alertLevel = 0;
     }
 
     private void Start()
@@ -41,10 +56,48 @@ public class PassiveMobAI : MonoBehaviour
         StartCoroutine(Behaviour());   
     }
 
+    void Update()
+    {
+        bool playerInFOV = false;
+        Collider[] targetsInFOV = Physics.OverlapSphere(transform.position, fov);
+        foreach(Collider c in targetsInFOV)
+        {
+            if(c.CompareTag("Player"))
+            {   
+                float signedAngle = Vector3.Angle(transform.forward, c.transform.position - transform.position);
+                
+                if(Mathf.Abs(signedAngle) < fovAngle / 2)
+                    playerInFOV = true;
+                break;
+            }
+        }
+        UpdateAlertState(playerInFOV);
+    }
+
+    private void UpdateAlertState(bool playerInFOV)
+    {
+        switch(alertStage)
+        {
+            case AlertStage.Peaceful:
+            if(playerInFOV)
+                alertLevel++;
+            if(alertLevel == 1)
+                alertStage = AlertStage.Alerted;
+                break;
+            case AlertStage.Alerted:
+            if(!playerInFOV)
+                alertLevel--;
+            if(alertLevel == 0)
+                alertStage = AlertStage.Peaceful;
+                break;
+            
+        }
+    }
+
     //Avance ou il peut avancer
     IEnumerator Graze()
     {   
-        float timeToWait = Random.Range(1f, 3f);
+        float timeToWait = Random.Range(3f, 10f);
         Debug.Log("appelé"+ timeToWait);
         yield return new WaitForSeconds(timeToWait);
     }
@@ -75,12 +128,7 @@ public class PassiveMobAI : MonoBehaviour
         walkPointSet = true;
     }
 
-    void OnDrawGizmosSelected()
-    {
-        // Dessiner le rayon de détection pour la visualisation dans l'éditeur
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
-    }
+    
     
     IEnumerator GoToPosition(Vector3 position)
     {   
@@ -100,11 +148,11 @@ public class PassiveMobAI : MonoBehaviour
         //animator.SetFloat("ForwardMove", 0.5f);
         do
         {   
-            if(playerInSightRange)
+            /*if(playerInSightRange)
             {
                 agent.speed = 7f;
             }
-            else
+            else*/
             {
                 agent.speed = 3.5f;
             }
