@@ -19,21 +19,11 @@ public class PassiveMobAI : MonoBehaviour
     public Vector3 walkpoint;
     bool walkPointSet;
     public float walkPointRange;
-    public float sightRange;
-    /*public bool playerInSightRange 
-    {
-        get
-        {
-            return Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        }
-    }*/
-
+    
     [SerializeField]
     Animator animator;
+    
     [SerializeField]Transform anchor, anchor1;
-    
-    
-    
     
     public float fov;
     public AlertStage alertStage;
@@ -53,7 +43,7 @@ public class PassiveMobAI : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(Behaviour());   
+        StartCoroutine(Behaviour());
     }
 
     void Update()
@@ -71,10 +61,10 @@ public class PassiveMobAI : MonoBehaviour
                 break;
             }
         }
-        UpdateAlertState(playerInFOV);
+        StartCoroutine(UpdateAlertState(playerInFOV));
     }
 
-    private void UpdateAlertState(bool playerInFOV)
+    IEnumerator UpdateAlertState(bool playerInFOV)
     {
         switch(alertStage)
         {
@@ -83,6 +73,7 @@ public class PassiveMobAI : MonoBehaviour
                 alertLevel++;
             if(alertLevel == 1)
                 alertStage = AlertStage.Alerted;
+                yield return new WaitForSeconds(7);
                 break;
             case AlertStage.Alerted:
             if(!playerInFOV)
@@ -105,7 +96,7 @@ public class PassiveMobAI : MonoBehaviour
     IEnumerator Behaviour()
     {
         while(true)
-        {
+        {   
             yield return null;
             if(!walkPointSet) SearchWalkPoint();
             yield return StartCoroutine(GoToPosition(walkpoint));
@@ -148,13 +139,13 @@ public class PassiveMobAI : MonoBehaviour
         //animator.SetFloat("ForwardMove", 0.5f);
         do
         {   
-            /*if(playerInSightRange)
+            if(alertStage == AlertStage.Alerted)
             {
-                agent.speed = 7f;
+                agent.speed = 12f;
             }
-            else*/
+            else
             {
-                agent.speed = 3.5f;
+                agent.speed = 1.5f;
             }
 
             distanceToWalkPoint = transform.position - walkpoint;
