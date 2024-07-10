@@ -8,8 +8,7 @@ public class HealthManager : MonoBehaviour
 {
     public float health = 100f;
     public float maxHealth = 100f;
-    public Image healthBarImage;
-    public TMP_Text healthText;
+    
     private IDamageable damageable;
     
     
@@ -28,18 +27,14 @@ public class HealthManager : MonoBehaviour
     public void RemoveHealth(float lostHealth)
     {
         health -= lostHealth;
+        damageable.SetDamage(lostHealth);
         if(health <= 0)
         {
             damageable.OnKill();
         }
     }
     
-    public void HealthController()
-    {
-        healthBarImage.fillAmount = health / maxHealth;
-        healthText.text = maxHealth + " / " + maxHealth;
-        health = Mathf.Clamp(health, 0f, maxHealth);
-    }
+    
 }
 
 

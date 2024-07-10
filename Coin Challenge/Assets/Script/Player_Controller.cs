@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
@@ -34,6 +35,8 @@ public class Player_Controller : MonoBehaviour, IDamageable
     GameManager gameManager;
     [SerializeField]
     HealthManager healthManager;
+    [SerializeField] LayerMask groundDetectionMask;
+    bool jumpInputPressed;
     
 
 
@@ -46,10 +49,19 @@ public class Player_Controller : MonoBehaviour, IDamageable
         localRotation = transform.localRotation;
     }
     
+    void Start()
+    {
+        PlayerHealthBar.Instance.UpdateBar(healthManager);
+    }
+    
     void FixedUpdate()
     {
+        RaycastHit hit;
+        playerTouchTheGround = Physics.Raycast(transform.position, Vector3.down, out hit, 10, groundDetectionMask);
         MovePlayer();
     }
+
+    
     
     void Update()
     {
@@ -57,17 +69,10 @@ public class Player_Controller : MonoBehaviour, IDamageable
         inputDir = inputDir.normalized;
         PlayerJump();
         PlayerFall();
-        healthManager.HealthController();
         
         
-        /*RaycastHit hit;
-
-        Debug.DrawRay(transform.position, transform.up * 10, Color.red);
-
-        if (Physics.Raycast(transform.position, transform.up, out hit, 10))
-        {
-            Debug.Log("le raycast touche un objet !");
-        }*/
+        
+        
         
     }
 
@@ -106,24 +111,31 @@ public class Player_Controller : MonoBehaviour, IDamageable
     //Saut du joueur
     void PlayerJump()
     {
+        
+
+        Debug.DrawRay(transform.position, transform.up * 10, Color.red);
+
+        
+        
         if(Input.GetButtonDown("Jump") && playerTouchTheGround)
         {
             rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
             playerTouchTheGround = false;
         }
+
     }
     
     //Activé si le joueur touche le sol
-    private void OnCollisionEnter(Collision collision)
+    /*private void OnCollisionEnter(Collision collision)
     {
         playerTouchTheGround = true;
-    }
+    }*/
 
     //Activé si le joueur ne touche pas le sol
-    private void OnCollisionExit(Collision collision)
+    /*private void OnCollisionExit(Collision collision)
     {
         playerTouchTheGround = false;
-    }
+    }*/
 
     //On détecte la col avec des meat puis on les collecte
     public void OnTriggerEnter(Collider Col)
@@ -146,7 +158,7 @@ public class Player_Controller : MonoBehaviour, IDamageable
 
     public void SetDamage(float damage)
     {
-        healthManager.RemoveHealth(damage);
+        PlayerHealthBar.Instance.UpdateBar(healthManager);
     }
 
     public void OnKill()

@@ -30,6 +30,28 @@ public class PassiveMobAI : MonoBehaviour
     [Range(0, 1)] public float alertLevel; //Peaceful 0, Alerted 1
     [Range(0, 360)]  public float fovAngle;
 
+    private float currentSpeed
+    {
+        get 
+        {
+            bool playerInFOV = PlayerInRange();
+            if(playerInFOV)
+            {
+                playerLastTimeInRange = Time.timeSinceLevelLoad;
+            }
+            return elapseTimeSinceLastDetection > 7? 12:1.5f;
+        }
+    }
+
+    float playerLastTimeInRange = 0;
+    float elapseTimeSinceLastDetection
+    {
+        get
+        {
+            return playerLastTimeInRange - Time.timeSinceLevelLoad  ;
+        }
+    }
+
     
     
 
@@ -46,23 +68,7 @@ public class PassiveMobAI : MonoBehaviour
         StartCoroutine(Behaviour());
     }
 
-    void Update()
-    {
-        bool playerInFOV = false;
-        Collider[] targetsInFOV = Physics.OverlapSphere(transform.position, fov);
-        foreach(Collider c in targetsInFOV)
-        {
-            if(c.CompareTag("Player"))
-            {   
-                float signedAngle = Vector3.Angle(transform.forward, c.transform.position - transform.position);
-                
-                if(Mathf.Abs(signedAngle) < fovAngle / 2)
-                    playerInFOV = true;
-                break;
-            }
-        }
-        StartCoroutine(UpdateAlertState(playerInFOV));
-    }
+   
 
     IEnumerator UpdateAlertState(bool playerInFOV)
     {
@@ -137,23 +143,39 @@ public class PassiveMobAI : MonoBehaviour
 
         Vector3 distanceToWalkPoint;
         //animator.SetFloat("ForwardMove", 0.5f);
+
+        
+        
         do
         {   
-            if(alertStage == AlertStage.Alerted)
-            {
-                agent.speed = 12f;
-            }
-            else
-            {
-                agent.speed = 1.5f;
-            }
+            agent.speed = currentSpeed;
+            
 
             distanceToWalkPoint = transform.position - walkpoint;
             yield return null;
+
         }
         while(distanceToWalkPoint.magnitude > 1f);
         
         walkPointSet = false;
         //animator.SetFloat("ForwardMove", 0f);
+    }
+
+    public bool PlayerInRange()
+    {
+        bool playerInFOV = false;
+        Collider[] targetsInFOV = Physics.OverlapSphere(transform.position, fov);
+        foreach(Collider c in targetsInFOV)
+        {
+            if(c.CompareTag("Player"))
+            {   
+                float signedAngle = Vector3.Angle(transform.forward, c.transform.position - transform.position);
+                
+                if(Mathf.Abs(signedAngle) < fovAngle / 2)
+                    playerInFOV = true;
+                break;
+            }
+        }
+        return playerInFOV;
     }
 }
