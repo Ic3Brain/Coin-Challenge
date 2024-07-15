@@ -251,9 +251,10 @@ MonoBehaviour:
   attackRange: 2
   playerInSightRange: 0
   playerInAttackRange: 0
-  animator: {fileID: 9059862833035630047}
   attackDamage: 25
   weapon: {fileID: 2006677070268930913}
+  animator: {fileID: 9059862833035630047}
+  healthManager: {fileID: 0}
 --- !u!114 &4706527295174288910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,8 +269,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   maxHealth: 1
-  healthBarImage: {fileID: 0}
-  healthText: {fileID: 0}
 --- !u!114 &5425720261264100499
 MonoBehaviour:
   m_ObjectHideFlags: 0

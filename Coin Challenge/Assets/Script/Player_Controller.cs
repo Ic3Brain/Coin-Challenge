@@ -69,11 +69,6 @@ public class Player_Controller : MonoBehaviour, IDamageable
         inputDir = inputDir.normalized;
         PlayerJump();
         PlayerFall();
-        
-        
-        
-        
-        
     }
 
     //Au restart on vient chercher la position initial du joueur
@@ -124,18 +119,6 @@ public class Player_Controller : MonoBehaviour, IDamageable
         }
 
     }
-    
-    //Activé si le joueur touche le sol
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        playerTouchTheGround = true;
-    }*/
-
-    //Activé si le joueur ne touche pas le sol
-    /*private void OnCollisionExit(Collision collision)
-    {
-        playerTouchTheGround = false;
-    }*/
 
     //On détecte la col avec des meat puis on les collecte
     public void OnTriggerEnter(Collider Col)
