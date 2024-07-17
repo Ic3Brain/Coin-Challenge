@@ -5,17 +5,18 @@ using UnityEngine;
 public class DeerController : MonoBehaviour, IDamageable
 {
     [SerializeField]
-    HealthManager healthManager;
+    RandomMeatSpawner randomMeatSpawner;
 
 
 
     public void OnKill()
-    {
+    {   
+        randomMeatSpawner.SpawnMeat(1);
         Destroy(this.gameObject);
     }
 
-    public void SetDamage(float damage)
+    public void OnDamage(float damage)
     {
-        healthManager.RemoveHealth(damage);
+        
     }
 }

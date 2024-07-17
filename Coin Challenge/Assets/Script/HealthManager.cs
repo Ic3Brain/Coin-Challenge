@@ -27,7 +27,7 @@ public class HealthManager : MonoBehaviour
     public void RemoveHealth(float lostHealth)
     {
         health -= lostHealth;
-        damageable.SetDamage(lostHealth);
+        damageable.OnDamage(lostHealth);
         if(health <= 0)
         {
             damageable.OnKill();

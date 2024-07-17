@@ -12,9 +12,19 @@ public class DaggerController : MonoBehaviour
     public LayerMask deer;
 
     [SerializeField]
-    HealthManager healthManager;
+    float attackRange = 1.5f;
+    
+    [SerializeField] 
+    LayerMask layerMask;
     
 
+    void Update()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            AttackPlayer();
+        }
+    }
   
 
     private void AttackPlayer()
@@ -22,15 +32,16 @@ public class DaggerController : MonoBehaviour
         Debug.Log("je suis appelé");
         if(!alreadyAttacked)
         {   
-            Collider[] hitDeer = Physics.OverlapSphere(weapon.transform.position, deer);
+            Collider[] hitDeer = Physics.OverlapSphere(weapon.transform.position, attackRange, layerMask);
 
         foreach (Collider deerCollider in hitDeer)
-        {
-            HealthManager deer = deerCollider.GetComponent<HealthManager>();
-            if (deer != null)
+        {   
+            Debug.Log(deerCollider.transform.root.name);
+            HealthManager healthManager = deerCollider.GetComponent<HealthManager>();
+            if (healthManager != null)
             {
                 healthManager.RemoveHealth(attackDamage);
-                Debug.Log("Deer attacked ! Damage: " + attackDamage);
+                Debug.Log(healthManager.gameObject.name + " " + attackDamage);
             }
         }
             alreadyAttacked = true;

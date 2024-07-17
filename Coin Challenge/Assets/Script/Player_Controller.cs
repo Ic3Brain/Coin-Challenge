@@ -57,7 +57,7 @@ public class Player_Controller : MonoBehaviour, IDamageable
     void FixedUpdate()
     {
         RaycastHit hit;
-        playerTouchTheGround = Physics.Raycast(transform.position, Vector3.down, out hit, 10, groundDetectionMask);
+        playerTouchTheGround = Physics.Raycast(transform.position, Vector3.down, out hit, 0.1f, groundDetectionMask);
         MovePlayer();
     }
 
@@ -139,7 +139,7 @@ public class Player_Controller : MonoBehaviour, IDamageable
         }
     }
 
-    public void SetDamage(float damage)
+    public void OnDamage(float damage)
     {
         PlayerHealthBar.Instance.UpdateBar(healthManager);
     }

@@ -22,8 +22,8 @@ TagManager:
   - WhatIsPlayer
   - WhatIsGround
   - HuntArea
-  - Deer
-  - 
+  - Enemy
+  - Collider
   - 
   - 
   - 

@@ -13,7 +13,7 @@ public class TigerController : MonoBehaviour, IDamageable
         Destroy(this.gameObject);
     }
 
-    public void SetDamage(float damage)
+    public void OnDamage(float damage)
     {
         healthManager.RemoveHealth(damage);
     }
