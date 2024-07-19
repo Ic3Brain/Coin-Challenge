@@ -9844,7 +9844,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880317042}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0937431, y: -0.00026203733, z: 0.00002467284, w: 0.9955964}
+  m_LocalRotation: {x: 0.093743116, y: -0.00026203733, z: 0.000024672845, w: 0.9955964}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16512,7 +16512,7 @@ Transform:
   m_GameObject: {fileID: 1759401051}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -282, y: 0, z: 35}
+  m_LocalPosition: {x: -276, y: 0, z: 133.83296}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16923,6 +16923,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deer: {fileID: 1759401051}
+  anchor: {fileID: 960440850}
+  anchor1: {fileID: 1863962128}
 --- !u!1001 &1804394063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20100,6 +20102,10 @@ PrefabInstance:
       propertyPath: groundDetectionMask.m_Bits
       value: 439
       objectReference: {fileID: 0}
+    - target: {fileID: 2966607009104926315, guid: 70899f00419bc01429e2698e7160e96c, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5407890563052415430, guid: 70899f00419bc01429e2698e7160e96c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -303
@@ -20164,6 +20170,18 @@ PrefabInstance:
       propertyPath: healthBarImage
       value: 
       objectReference: {fileID: 1966999850}
+    - target: {fileID: 9063273420171906036, guid: 70899f00419bc01429e2698e7160e96c, type: 3}
+      propertyPath: portal
+      value: 
+      objectReference: {fileID: 916357414}
+    - target: {fileID: 9063273420171906036, guid: 70899f00419bc01429e2698e7160e96c, type: 3}
+      propertyPath: maxDistance
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063273420171906036, guid: 70899f00419bc01429e2698e7160e96c, type: 3}
+      propertyPath: attractionForce
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

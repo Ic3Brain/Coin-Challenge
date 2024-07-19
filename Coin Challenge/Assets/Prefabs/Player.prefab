@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 5407890563052415430}
   - component: {fileID: 1944259116288566761}
   - component: {fileID: 6335921601610843906}
+  - component: {fileID: 9063273420171906036}
   - component: {fileID: 8647356901350095478}
   - component: {fileID: 7290570529877352612}
   - component: {fileID: 2966607009104926315}
@@ -175,6 +176,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e20060e1145ee74f875d8067e324f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9063273420171906036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5880066754243179217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64407015272552e47a43358141bc3a0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portal: {fileID: 0}
+  attractionForce: 10
+  maxDistance: 100
+  actualDistance: 0
 --- !u!114 &8647356901350095478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,7 +372,10 @@ MonoBehaviour:
   deer:
     serializedVersion: 2
     m_Bits: 512
-  healthManager: {fileID: 8647356901350095478}
+  attackRange: 1.5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &7378515984351165618
 PrefabInstance:
   m_ObjectHideFlags: 0
