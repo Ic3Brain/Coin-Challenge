@@ -9,6 +9,7 @@ public class CollectingMeat : MonoBehaviour
     public static CollectingMeat instance;
     public int meatCount;
     public TMP_Text meatText;
+    
 
     void Awake()
     {
@@ -22,6 +23,6 @@ public class CollectingMeat : MonoBehaviour
 
     public void MeatCount()
     {
-        meatText.text = "Meat Count : " + meatCount.ToString();
+        meatText.text = " : " + meatCount.ToString();
     }
 }
