@@ -9,13 +9,14 @@ public class RespawnDeer : MonoBehaviour
     [SerializeField]
     SpawnZone spawnZone;
 
-    private List<GameObject> deerList = new List<GameObject>();
+    public List<GameObject> deerList = new List<GameObject>();
 
     void Start()
-    {
+    {   
+        
         for (int i = 0; i < TotalDeerCount; i++)
         {
-            spawnZone.DeerSpawnZone();
+            //spawnZone.DeerSpawnZone();
         }
     }
 
@@ -26,7 +27,7 @@ public class RespawnDeer : MonoBehaviour
         {
             if (deerList[i] == null)
             {
-                spawnZone.DeerSpawnZone();
+                //spawnZone.DeerSpawnZone();
             }
         }
     }

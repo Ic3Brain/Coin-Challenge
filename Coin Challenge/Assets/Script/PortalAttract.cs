@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PortalAttract : MonoBehaviour
@@ -9,6 +10,7 @@ public class PortalAttract : MonoBehaviour
     public float maxDistance = 100;
     public float actualDistance;
     Rigidbody rb;
+    
 
 
     void Start()
@@ -16,9 +18,9 @@ public class PortalAttract : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    
-    void Update()
-    {
+    public void AttrackToPortal()
+    {   
+        this.rb.useGravity = false;
         actualDistance = Vector3.Distance(portal.transform.position, transform.position);
         if(actualDistance <= maxDistance)
         {

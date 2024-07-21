@@ -8,13 +8,15 @@ public class IhmController : MonoBehaviour
 {
     [SerializeField]
     TMP_Text timerText;
-    float elapsedTime;
     public GameObject SoundPanel;
     public GameObject SettingsPanel;
     public GameObject GameOverPanel;
     public float time = 10f;
     [SerializeField]
     GameManager gameManager;
+
+    [SerializeField]
+    PortalAttract portalAttract;
     
     void Start()
     {
@@ -65,7 +67,7 @@ public class IhmController : MonoBehaviour
         }
         if(time == 0)
         {
-            gameManager.OnGameOver();
+            portalAttract.AttrackToPortal();
         }
     }
 

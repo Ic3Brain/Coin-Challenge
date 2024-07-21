@@ -1,17 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 public class RandomMeatSpawner : MonoBehaviour
 {
     public GameObject[] meat;
-    public int meatCount = 1;
-
     
-    void Start()
-    {
-        
-    }
+    
 
     public void SpawnMeat(int meatCount)
     {
