@@ -11,7 +11,7 @@ public class DeerController : MonoBehaviour, IDamageable
 
     public void OnKill()
     {   
-        randomMeatSpawner.SpawnMeat(1);
+        randomMeatSpawner.SpawnMeat(1, transform.position);
         Destroy(this.gameObject);
     }
 

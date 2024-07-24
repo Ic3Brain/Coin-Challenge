@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 9063273420171906036}
   - component: {fileID: 8647356901350095478}
   - component: {fileID: 7290570529877352612}
+  - component: {fileID: 2134570647015078093}
   - component: {fileID: 2966607009104926315}
   m_Layer: 6
   m_Name: Player
@@ -229,6 +230,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &2134570647015078093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5880066754243179217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7371ee4030239d74ca2f493b32b8abe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomMeatSpawner: {fileID: 0}
 --- !u!54 &2966607009104926315
 Rigidbody:
   m_ObjectHideFlags: 0
