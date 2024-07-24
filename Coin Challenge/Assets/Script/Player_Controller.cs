@@ -126,6 +126,8 @@ public class Player_Controller : MonoBehaviour, IDamageable
         ICollectable iCollectable = Col.gameObject.GetComponent<ICollectable>();
         if(iCollectable == null)
         return;
+        if(!iCollectable.isCollectable)
+        return;
         iCollectable.OnCollected();
     }
 

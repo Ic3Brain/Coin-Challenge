@@ -7,6 +7,7 @@ public class DeerController : MonoBehaviour, IDamageable
     [SerializeField]
     RandomMeatSpawner randomMeatSpawner;
 
+    
 
 
     public void OnKill()
@@ -19,4 +20,6 @@ public class DeerController : MonoBehaviour, IDamageable
     {
         
     }
+
+    
 }

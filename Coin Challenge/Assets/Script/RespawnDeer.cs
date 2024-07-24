@@ -7,7 +7,9 @@ public class RespawnDeer : MonoBehaviour
     private const int TotalDeerCount = 8;
 
     [SerializeField]
-    SpawnZone spawnZone;
+    GameObject deerPrefab;
+
+
 
     public List<GameObject> deerList = new List<GameObject>();
 
@@ -16,7 +18,7 @@ public class RespawnDeer : MonoBehaviour
         
         for (int i = 0; i < TotalDeerCount; i++)
         {
-            //spawnZone.DeerSpawnZone();
+            SpawnDeer();
         }
     }
 
@@ -27,8 +29,13 @@ public class RespawnDeer : MonoBehaviour
         {
             if (deerList[i] == null)
             {
-                //spawnZone.DeerSpawnZone();
+                
             }
         }
+    }
+
+    void SpawnDeer()
+    {
+        DeerController deer = Instantiate(deerPrefab).GetComponent<DeerController>();
     }
 }

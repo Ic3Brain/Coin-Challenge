@@ -5,26 +5,79 @@ using UnityEngine;
 
 public class PortalAttract : MonoBehaviour
 {
-    public GameObject portal;
+    
     public float attractionForce = 10;
     public float maxDistance = 100;
     public float actualDistance;
+
+    [SerializeField]
     Rigidbody rb;
+
+    [SerializeField]
+    float startShrinkingDist = 10f;
+
+    [SerializeField]
+    PortalAttract targetPortal;
+    
+    [SerializeField]
+    bool canAttracked;
     
 
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        
+    }
+
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.E) && canAttracked)
+        {   
+            AttrackToPortal();
+
+        }
     }
 
     public void AttrackToPortal()
     {   
+        StartCoroutine(AttrackPortalCorrout());
+    }
+
+    IEnumerator AttrackPortalCorrout()
+    {
         this.rb.useGravity = false;
-        actualDistance = Vector3.Distance(portal.transform.position, transform.position);
-        if(actualDistance <= maxDistance)
-        {
-            rb.AddForce((portal.transform.position - transform.position) * attractionForce * Time.smoothDeltaTime);
+        float size = 1;
+        do 
+        {   
+            actualDistance = Vector3.Distance(transform.position, rb.transform.position);
+            if(actualDistance <= maxDistance)
+            {
+                rb.AddForce((transform.position - rb.transform.position) * attractionForce * Time.smoothDeltaTime);
+            }
+            size = Mathf.InverseLerp(0, startShrinkingDist, actualDistance);
+            rb.transform.localScale = new Vector3(size, size, size);
+            yield return null;
+        }
+        while (actualDistance > 1);
+        rb.velocity = Vector3.zero;
+        targetPortal.StartCoroutine(ExpulseCorrout());
+    }
+
+    IEnumerator ExpulseCorrout()
+    {   
+        Debug.Log("expulse corrout");
+        float t = 0;
+        float size = 0;
+        rb.velocity = Vector3.zero;
+        rb.MovePosition(transform.position);
+        rb.useGravity = true;
+        while(t < 1.1f)
+        {   
+            t += Time.deltaTime;
+            size = Mathf.Lerp(0, 1, t);
+            rb.transform.localScale = new Vector3(size, size, size);
+            yield return null;
         }
     }
 }

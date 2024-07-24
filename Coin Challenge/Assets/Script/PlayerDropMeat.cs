@@ -20,7 +20,7 @@ public class PlayerDropMeat : MonoBehaviour
     {   
         if(Input.GetMouseButtonDown(1))
         {   
-            randomMeatSpawner.SpawnMeat(1, transform.position);
+            randomMeatSpawner.SpawnMeat(1, false, transform.position);
             StartCoroutine(StartCooldown());
         }   
     }
