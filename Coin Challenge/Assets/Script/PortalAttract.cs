@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PortalAttract : MonoBehaviour
@@ -21,23 +19,10 @@ public class PortalAttract : MonoBehaviour
     
     [SerializeField]
     bool canAttracked;
-    
 
+    [SerializeField]
+    IhmController ihm;
 
-    void Start()
-    {
-        
-    }
-
-
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.E) && canAttracked)
-        {   
-            AttrackToPortal();
-
-        }
-    }
 
     public void AttrackToPortal()
     {   
