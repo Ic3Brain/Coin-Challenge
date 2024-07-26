@@ -10,7 +10,7 @@ public class Teleporter : MonoBehaviour
     private void OnTriggerEnter(Collider col)
     {
         if(col.gameObject.CompareTag("teleporter"))
-        {
+        {   
             player.transform.position = tp.transform.position;
         }
     }

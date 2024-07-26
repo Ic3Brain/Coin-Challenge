@@ -18,14 +18,12 @@ public class IhmController : MonoBehaviour
     [SerializeField]
     PortalAttract portalAttract;
     
+    
     void Start()
     {
-       StartCoroutine(TimeChrono());  
+       StartCoroutine(TimeChrono());
     }
     
-
-    
-
     void Update()
     {
         TimeChrono();
@@ -60,7 +58,7 @@ public class IhmController : MonoBehaviour
     public IEnumerator TimeChrono()
     {
         while(time > 0)
-        {
+        {   
             time--;
             yield return new WaitForSeconds(1);
             timerText.text = string.Format("{0:0}:{1:00}", Mathf.Floor(time / 60), time % 60);

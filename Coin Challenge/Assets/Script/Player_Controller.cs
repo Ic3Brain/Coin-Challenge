@@ -33,10 +33,12 @@ public class Player_Controller : MonoBehaviour, IDamageable
     
     [SerializeField]
     GameManager gameManager;
+    
     [SerializeField]
     HealthManager healthManager;
+    
     [SerializeField] LayerMask groundDetectionMask;
-    bool jumpInputPressed;
+    
     
 
 
@@ -45,6 +47,9 @@ public class Player_Controller : MonoBehaviour, IDamageable
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        
+        rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
+
         localPosition = transform.localPosition;
         localRotation = transform.localRotation;
     }
@@ -52,6 +57,7 @@ public class Player_Controller : MonoBehaviour, IDamageable
     void Start()
     {
         PlayerHealthBar.Instance.UpdateBar(healthManager);
+        
     }
     
     void FixedUpdate()
@@ -76,7 +82,7 @@ public class Player_Controller : MonoBehaviour, IDamageable
     {
         transform.localPosition = localPosition;
         transform.localRotation = localRotation;
-        rb.constraints = RigidbodyConstraints.None;
+        
     }
 
     
@@ -158,7 +164,7 @@ public class Player_Controller : MonoBehaviour, IDamageable
             rb.constraints = RigidbodyConstraints.FreezeAll;
             gameManager.OnGameOver();
         }
+        else
+        rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
     }
-
-    
 }

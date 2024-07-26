@@ -37,7 +37,7 @@ public class PortalAttract : MonoBehaviour
         {   
             actualDistance = Vector3.Distance(transform.position, rb.transform.position);
             if(actualDistance <= maxDistance)
-            {
+            {   
                 rb.AddForce((transform.position - rb.transform.position) * attractionForce * Time.smoothDeltaTime);
             }
             size = Mathf.InverseLerp(0, startShrinkingDist, actualDistance);
@@ -45,8 +45,10 @@ public class PortalAttract : MonoBehaviour
             yield return null;
         }
         while (actualDistance > 1);
-        rb.velocity = Vector3.zero;
-        targetPortal.StartCoroutine(ExpulseCorrout());
+        //rb.velocity = Vector3.zero;
+        //targetPortal.StartCoroutine(ExpulseCorrout());
+        rb.transform.position = targetPortal.transform.position;
+        targetPortal.StartCoroutine(targetPortal.ExpulseCorrout());
     }
 
     IEnumerator ExpulseCorrout()
@@ -55,7 +57,7 @@ public class PortalAttract : MonoBehaviour
         float t = 0;
         float size = 0;
         rb.velocity = Vector3.zero;
-        rb.MovePosition(transform.position);
+        //rb.MovePosition(transform.position);
         rb.useGravity = true;
         while(t < 1.1f)
         {   
