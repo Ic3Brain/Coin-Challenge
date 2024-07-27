@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 25
+  _isCollectable: 0
 --- !u!1 &2526659193860572528
 GameObject:
   m_ObjectHideFlags: 0

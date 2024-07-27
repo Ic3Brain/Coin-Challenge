@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerDropMeat : MonoBehaviour
@@ -7,9 +6,12 @@ public class PlayerDropMeat : MonoBehaviour
     [SerializeField]
     RandomMeatSpawner randomMeatSpawner;
 
+    [SerializeField]
+    Toolbar toolbar;
+
     public float meatSpawnCooldown = 2f; 
     public bool canSpawnMeat = true;
-
+    
 
     void Update()
     {
@@ -18,10 +20,14 @@ public class PlayerDropMeat : MonoBehaviour
     
     public void RmbMeatDrop()
     {   
+
+        int currentSlotIndex = toolbar.GetCurrentSlotIndex();
+
         if(Input.GetMouseButtonDown(1))
         {   
-            randomMeatSpawner.SpawnMeat(1, false, transform.position);
+            randomMeatSpawner.SpawnMeat(currentSlotIndex, false, transform.position);
             StartCoroutine(StartCooldown());
+            Debug.Log("je suis appelé" + StartCoroutine(StartCooldown()));
         }   
     }
 
@@ -31,5 +37,6 @@ public class PlayerDropMeat : MonoBehaviour
         canSpawnMeat = false;
         yield return new WaitForSeconds(meatSpawnCooldown);
         canSpawnMeat = true;
+        Debug.Log("Cooldown finished, can spawn meat again.");
     }
 }
