@@ -9,14 +9,15 @@ public class EnemyAi : MonoBehaviour
 {   
     public NavMeshAgent agent;
     public Transform player;
-    public LayerMask whatIsGround, whatIsPlayer;
+    public Transform meat;
+    public LayerMask whatIsGround, whatIsPlayer, whatIsMeat;
     public Vector3 walkpoint;
     bool walkPointSet;
     public float walkPointRange;
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    public bool playerInSightRange, playerInAttackRange, meatInSightRange;
     public int attackDamage = 25;
     public Transform weapon;
     
@@ -33,16 +34,19 @@ public class EnemyAi : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        //meat = GameObject.Find("Meat").transform;
     }
 
     private void Update()
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        meatInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsMeat);
 
         if(!playerInSightRange && !playerInAttackRange) Patroling();
         if(playerInSightRange && !playerInAttackRange) ChasePlayer();
         if(playerInAttackRange && playerInSightRange) AttackPlayer();
+        if(meatInSightRange) DistractedByMeat();
     }
 
     //Avance ou il peut avancer
@@ -111,4 +115,9 @@ public class EnemyAi : MonoBehaviour
         alreadyAttacked = false;
     }
     
+    public void DistractedByMeat()
+    {   
+       Debug.Log("je cours sur la meat");
+        agent.SetDestination(meat.position);
+    }
 }

@@ -238,12 +238,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 3065813591906842684}
   player: {fileID: 0}
+  meat: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
+  whatIsMeat:
+    serializedVersion: 2
+    m_Bits: 2048
   walkpoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 1
@@ -251,6 +255,7 @@ MonoBehaviour:
   attackRange: 2
   playerInSightRange: 0
   playerInAttackRange: 0
+  meatInSightRange: 0
   attackDamage: 25
   weapon: {fileID: 2006677070268930913}
   animator: {fileID: 9059862833035630047}

@@ -94,9 +94,9 @@ GameObject:
   - component: {fileID: 438032814907245965}
   - component: {fileID: 1368218769231232656}
   - component: {fileID: -4555848564396676050}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Meat25
-  m_TagString: Untagged
+  m_TagString: Meat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
