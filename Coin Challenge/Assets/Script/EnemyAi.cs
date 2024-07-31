@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
@@ -15,9 +16,9 @@ public class EnemyAi : MonoBehaviour
     bool walkPointSet;
     public float walkPointRange;
     public float timeBetweenAttacks;
-    bool alreadyAttacked;
+    HealthManager playerHealthManager;
     public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange, meatInSightRange;
+    public bool meatInSightRange;
     public int attackDamage = 25;
     public Transform weapon;
     
@@ -27,6 +28,27 @@ public class EnemyAi : MonoBehaviour
     [SerializeField]
     HealthManager healthManager;
     
+    List<GameObject> availableMeat = new List<GameObject>();
+
+    bool playerInSightRange
+    {
+        get
+        {   
+            if(!playerHealthManager.IsAlive)
+            return false;
+            return
+            Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        }
+    }
+
+    bool playerInAttackRange
+    {
+        get
+        {
+            return
+            Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        }
+    }
     
     
 
@@ -34,34 +56,61 @@ public class EnemyAi : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
-        //meat = GameObject.Find("Meat").transform;
     }
+
+    public void Start()
+    {   
+        playerHealthManager = player.gameObject.GetComponent<HealthManager>();
+        StartCoroutine(PatrolingCorout());
+    }
+
 
     private void Update()
     {
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-        meatInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsMeat);
-
-        if(!playerInSightRange && !playerInAttackRange) Patroling();
-        if(playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if(playerInAttackRange && playerInSightRange) AttackPlayer();
-        if(meatInSightRange) DistractedByMeat();
+        
     }
 
+
     //Avance ou il peut avancer
-    private void Patroling()
-    {
+    private IEnumerator PatrolingCorout()
+    {   
+        
+        do
+        {   
+            Debug.Log("je m'execute");
         if(!walkPointSet) SearchWalkPoint();
 
         if(walkPointSet)
             agent.SetDestination(walkpoint);
 
-        Vector3 distanceToWalkPoint = transform.position - walkpoint;
+        
 
-        if(distanceToWalkPoint.magnitude < 1f)
-            walkPointSet = false;
+            Vector3 distanceToWalkPoint;
+        do
+        {   
+            
+            distanceToWalkPoint = transform.position - walkpoint;
+            
+            if(playerInSightRange)
+            {
+                StartCoroutine(ChasePlayerCorout());
+                yield break;
+            }
+
             animator.SetFloat("ForwardMove", 0.5f);
+            yield return null;
+        }
+
+        while(distanceToWalkPoint.magnitude > 1.5f);        
+        
+        walkPointSet = false;
+        }
+
+
+    while(true);
+
+        
+            
     }
 
     //Vérifie si il peut avancer 
@@ -77,47 +126,83 @@ public class EnemyAi : MonoBehaviour
     }
 
     //Va a la position du player
-    private void ChasePlayer()
-    {
-        agent.SetDestination(player.position);
-        animator.SetFloat("ForwardMove", 1f);
+    private IEnumerator ChasePlayerCorout()
+    {   
+        
+        Vector3 distanceToWalkPoint;
+        do 
+        {   
+            agent.SetDestination(player.position);
+            distanceToWalkPoint = transform.position - player.position;
+            
+            animator.SetFloat("ForwardMove", 1f);
+            yield return null;
+        }
+        
+        while(distanceToWalkPoint.magnitude > 1.5f && playerInSightRange);
+        
+        if(playerInAttackRange)
+        {
+            StartCoroutine(AttackPlayerCorout());
+        }
+        else 
+        
+        if(!playerInSightRange)
+        {
+            StartCoroutine(PatrolingCorout());
+        }
     }
 
     //Attaque le joueur
-    private void AttackPlayer()
-    {
-        agent.SetDestination(transform.position);
-
-        transform.LookAt(player);
-        
-        
-        if(!alreadyAttacked)
-        {   
-            Collider[] hitPlayers = Physics.OverlapSphere(weapon.transform.position, attackRange, whatIsPlayer);
-
-        foreach (Collider playerCollider in hitPlayers)
-        {
-            HealthManager player = playerCollider.GetComponent<HealthManager>();
-            if (player != null)
-            {
-                healthManager.RemoveHealth(attackDamage);
-                Debug.Log("Player attacked! Damage: " + attackDamage);
-            }
-        }
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }
-    }
-
-    //reset l'attaque
-    private void ResetAttack()
-    {
-        alreadyAttacked = false;
-    }
-    
-    public void DistractedByMeat()
+    private IEnumerator AttackPlayerCorout()
     {   
-       Debug.Log("je cours sur la meat");
-        agent.SetDestination(meat.position);
+        Collider[] hitPlayers;
+
+        do
+       {    
+            transform.LookAt(player);
+
+            hitPlayers = Physics.OverlapSphere(weapon.transform.position, attackRange, whatIsPlayer);
+            Debug.Log(hitPlayers.Count());
+            foreach (Collider playerCollider in hitPlayers)
+            {
+                Debug.Log(playerCollider.gameObject.name);
+                HealthManager player = playerCollider.transform.root.GetComponent<HealthManager>();
+                if (player != null)
+                {
+                    healthManager.RemoveHealth(attackDamage);
+                    if(!healthManager.IsAlive)
+                    yield break;
+                    Debug.Log("Player attacked! Damage: " + attackDamage);
+                }
+
+                yield return new WaitForSeconds(timeBetweenAttacks);
+                break;
+            }
+        }    
+
+       while(hitPlayers.Length > 0);
+
+       if(playerInSightRange)
+       {
+            StartCoroutine(ChasePlayerCorout());
+       }
+       else 
+       {
+            StartCoroutine(PatrolingCorout());
+       }
+    }
+
+    
+    public void LookForMeat()
+    {
+        Collider[] hitColliders = new Collider[10];
+        int numbCollider = Physics.OverlapSphereNonAlloc(transform.position, sightRange, hitColliders, whatIsMeat, QueryTriggerInteraction.UseGlobal);
+        Debug.Log(numbCollider);
+        if(numbCollider > 0)
+        {
+            meatInSightRange = true;
+            agent.SetDestination(hitColliders[0].transform.position);
+        }
     }
 }

@@ -22,7 +22,13 @@ public class HealthManager : MonoBehaviour
    }
 
    
-
+    public bool IsAlive
+    {
+        get
+        {
+            return damageable.IsAlive;
+        }
+    }
 
     public void RemoveHealth(float lostHealth)
     {

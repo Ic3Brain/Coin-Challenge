@@ -38,12 +38,16 @@ public class Player_Controller : MonoBehaviour, IDamageable
     HealthManager healthManager;
     
     [SerializeField] LayerMask groundDetectionMask;
+
+    public bool IsAlive
+    {
+        get 
+        {
+            return healthManager.health > 0;
+        }
+    } 
     
-    
 
-
-
-   
     void Awake()
     {
         rb = GetComponent<Rigidbody>();

@@ -7,8 +7,7 @@ public class DeerController : MonoBehaviour, IDamageable
     [SerializeField]
     RandomMeatSpawner randomMeatSpawner;
 
-    
-
+    public bool IsAlive => throw new System.NotImplementedException();
 
     public void OnKill()
     {   
