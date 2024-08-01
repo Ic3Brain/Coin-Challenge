@@ -67,7 +67,7 @@ public class EnemyAi : MonoBehaviour
 
     private void Update()
     {
-        
+        LookForMeat();
     }
 
 
@@ -108,9 +108,6 @@ public class EnemyAi : MonoBehaviour
 
 
     while(true);
-
-        
-            
     }
 
     //Vérifie si il peut avancer 
@@ -193,12 +190,12 @@ public class EnemyAi : MonoBehaviour
        }
     }
 
-    
+    //Regarde si il y a de la meat dans la zone
     public void LookForMeat()
     {
         Collider[] hitColliders = new Collider[10];
         int numbCollider = Physics.OverlapSphereNonAlloc(transform.position, sightRange, hitColliders, whatIsMeat, QueryTriggerInteraction.UseGlobal);
-        Debug.Log(numbCollider);
+        
         if(numbCollider > 0)
         {
             meatInSightRange = true;
