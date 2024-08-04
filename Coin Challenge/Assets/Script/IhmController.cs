@@ -17,11 +17,21 @@ public class IhmController : MonoBehaviour
 
     [SerializeField]
     PortalAttract portalAttract;
+
+    [SerializeField]
+    AudioClip huntZoneMusic;
+
+    [SerializeField]
+    AudioSource ambiantMusic;
     
-    
+
+
+
     void Start()
     {
        StartCoroutine(TimeChrono());
+       ambiantMusic.clip = huntZoneMusic;
+       ambiantMusic.Play();
     }
     
     void Update()
@@ -64,7 +74,8 @@ public class IhmController : MonoBehaviour
             timerText.text = string.Format("{0:0}:{1:00}", Mathf.Floor(time / 60), time % 60);
         }
         if(time == 0)
-        {
+        {   
+            ambiantMusic.Stop();
             portalAttract.AttrackToPortal();
         }
     }

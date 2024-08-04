@@ -17,12 +17,20 @@ public class DaggerController : MonoBehaviour
     [SerializeField] 
     LayerMask layerMask;
     
+    [SerializeField]
+    AudioClip attack;
+
+    [SerializeField]
+    AudioSource SFXAudioSource;
+    
 
     void Update()
     {
         if(Input.GetMouseButtonDown(0))
         {
             AttackPlayer();
+            SFXAudioSource.clip = attack;
+            SFXAudioSource.Play();
         }
     }
   

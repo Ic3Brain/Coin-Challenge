@@ -62,13 +62,10 @@ MonoBehaviour:
   walkpoint: {x: 0, y: 0, z: 0}
   walkPointRange: 50
   animator: {fileID: 8016351635781249963}
-  anchor: {fileID: 0}
-  anchor1: {fileID: 0}
   fov: 15
   alertStage: 1
   alertLevel: 0
   fovAngle: 123
-  _quadrans: []
 --- !u!114 &6299491193143134885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,7 +93,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomMeatSpawner: {fileID: 1213945105387697833}
-  passiveMobAI: {fileID: 50901929404303221}
 --- !u!65 &7725677829279521388
 BoxCollider:
   m_ObjectHideFlags: 0

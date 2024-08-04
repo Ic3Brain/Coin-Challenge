@@ -17,11 +17,6 @@ public class PortalAttract : MonoBehaviour
     [SerializeField]
     PortalAttract targetPortal;
     
-    [SerializeField]
-    bool canAttracked;
-
-    [SerializeField]
-    IhmController ihm;
 
 
     public void AttrackToPortal()
@@ -45,8 +40,7 @@ public class PortalAttract : MonoBehaviour
             yield return null;
         }
         while (actualDistance > 1);
-        //rb.velocity = Vector3.zero;
-        //targetPortal.StartCoroutine(ExpulseCorrout());
+
         rb.transform.position = targetPortal.transform.position;
         targetPortal.StartCoroutine(targetPortal.ExpulseCorrout());
     }
@@ -57,7 +51,6 @@ public class PortalAttract : MonoBehaviour
         float t = 0;
         float size = 0;
         rb.velocity = Vector3.zero;
-        //rb.MovePosition(transform.position);
         rb.useGravity = true;
         while(t < 1.1f)
         {   

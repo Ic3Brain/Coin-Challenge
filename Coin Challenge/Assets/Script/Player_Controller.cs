@@ -24,6 +24,12 @@ public class Player_Controller : MonoBehaviour, IDamageable
     [SerializeField]
     Camera cam;
 
+    [SerializeField]
+    AudioClip jump;
+
+    [SerializeField]
+    AudioSource SFXAudioSource;
+
     float currentVelocity;
     float smoothTime = 0.05f;
     public bool playerTouchTheGround = true;
@@ -123,7 +129,9 @@ public class Player_Controller : MonoBehaviour, IDamageable
         
         
         if(Input.GetButtonDown("Jump") && playerTouchTheGround)
-        {
+        {   
+            SFXAudioSource.clip = jump;
+            SFXAudioSource.Play();
             rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
             playerTouchTheGround = false;
         }
