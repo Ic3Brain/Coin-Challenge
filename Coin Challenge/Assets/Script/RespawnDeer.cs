@@ -34,6 +34,7 @@ public class RespawnDeer : MonoBehaviour
         }
     }
 
+    //instancie un cerf 
     void SpawnDeer()
     {
         DeerController deer = Instantiate(deerPrefab).GetComponent<DeerController>();

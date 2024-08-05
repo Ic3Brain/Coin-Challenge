@@ -65,6 +65,7 @@ public class IhmController : MonoBehaviour
         GameOverPanel.SetActive(false);
     }
 
+    //Chrono
     public IEnumerator TimeChrono()
     {
         while(time > 0)

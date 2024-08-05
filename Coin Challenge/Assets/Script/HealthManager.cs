@@ -30,6 +30,7 @@ public class HealthManager : MonoBehaviour
         }
     }
 
+    //retire la vie
     public void RemoveHealth(float lostHealth)
     {
         health -= lostHealth;

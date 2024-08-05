@@ -18,6 +18,7 @@ public class PlayerDropMeat : MonoBehaviour
         RmbMeatDrop();
     }
     
+    //clique droit pour faire spawn une meat
     public void RmbMeatDrop()
     {   
 
@@ -31,7 +32,7 @@ public class PlayerDropMeat : MonoBehaviour
         }   
     }
 
-
+    //Commence un CD entre chaque clique droit
     public IEnumerator StartCooldown()
     {
         canSpawnMeat = false;

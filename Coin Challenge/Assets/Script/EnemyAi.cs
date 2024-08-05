@@ -10,7 +10,7 @@ public class EnemyAi : MonoBehaviour
 {   
     public NavMeshAgent agent;
     public Transform player;
-    public Transform meat;
+    
     public LayerMask whatIsGround, whatIsPlayer, whatIsMeat;
     public Vector3 walkpoint;
     bool walkPointSet;
@@ -29,6 +29,8 @@ public class EnemyAi : MonoBehaviour
     HealthManager healthManager;
     
     List<GameObject> availableMeat = new List<GameObject>();
+
+    
 
     bool playerInSightRange
     {
@@ -77,7 +79,7 @@ public class EnemyAi : MonoBehaviour
         
         do
         {   
-            Debug.Log("je m'execute");
+
         if(!walkPointSet) SearchWalkPoint();
 
         if(walkPointSet)
@@ -200,6 +202,15 @@ public class EnemyAi : MonoBehaviour
         {
             meatInSightRange = true;
             agent.SetDestination(hitColliders[0].transform.position);
+            StopAllCoroutines();
+            //StartCoroutine(EatMeat());
         }
     }
+
+    //public IEnumerator EatMeat()
+    //{
+        //stun le tigre pendant x temps
+        //meat dispawn après x temps quand tigre arrive sur la meat ?
+        
+    //}
 }

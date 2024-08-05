@@ -6,7 +6,7 @@ public class WeaponFollow : MonoBehaviour
 {
     public Transform target;
 
-    // Update is called once per frame
+    //Prend la position et la rotation de l'arme 
     void Update()
     {
         transform.position = target.position;

@@ -24,6 +24,7 @@ public class PortalAttract : MonoBehaviour
         StartCoroutine(AttrackPortalCorrout());
     }
 
+    //Attire le joueur vers le portail
     IEnumerator AttrackPortalCorrout()
     {
         this.rb.useGravity = false;
@@ -45,6 +46,7 @@ public class PortalAttract : MonoBehaviour
         targetPortal.StartCoroutine(targetPortal.ExpulseCorrout());
     }
 
+    //Redonne la taille normal au player
     IEnumerator ExpulseCorrout()
     {   
         Debug.Log("expulse corrout");

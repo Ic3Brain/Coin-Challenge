@@ -92,7 +92,6 @@ public class Player_Controller : MonoBehaviour, IDamageable
     {
         transform.localPosition = localPosition;
         transform.localRotation = localRotation;
-        
     }
 
     
@@ -159,16 +158,21 @@ public class Player_Controller : MonoBehaviour, IDamageable
         }
     }
 
+    //Update la barre de vie si damage
     public void OnDamage(float damage)
     {
         PlayerHealthBar.Instance.UpdateBar(healthManager);
     }
 
+
+    //Si mort alors gameover
     public void OnKill()
     {
         Debug.Log("je suis mort la honte");
     }
 
+
+    //Tue le joueur si en dessous de -4 y
     public void PlayerFall()
     {
         if(transform.position.y < -4)

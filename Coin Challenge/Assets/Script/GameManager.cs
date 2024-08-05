@@ -12,15 +12,15 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private IhmController ihmController;
     [SerializeField]
-    private Player_Controller player_Controller;
-     public static GameManager INSTANCE;
+    private Player_Controller playerController;
+     public static GameManager instance;
 
     [SerializeField]
     CollectingMeat collectingMeat;
     
     void Awake()
     {
-        INSTANCE = this;
+        instance = this;
     }
     void Start()
     {
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
     //Restart du jeu 
     public void Restart()
     {   
-        player_Controller.Respawn();
+        playerController.Respawn();
         collectingMeat.meatCount = 0;
         healthManager.health = healthManager.maxHealth;
         ihmController.TimeChrono();

@@ -21,6 +21,7 @@ public class CollectingMeat : MonoBehaviour
         MeatCount();
     }
 
+    //Met a jour le texte
     public void MeatCount()
     {
         meatText.text = " : " + meatCount.ToString();

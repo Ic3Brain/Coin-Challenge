@@ -7,6 +7,8 @@ public class EnemyHeadCheck : MonoBehaviour
    [SerializeField]
    private Rigidbody playerRb;
 
+
+    //si je saute sur le tigre je fais un petit bond
    private void OnTriggerEnter(Collider col)
    {
     if(col.GetComponent<PlayerCheck>())

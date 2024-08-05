@@ -16,7 +16,7 @@ public class PlayerHealthBar : MonoBehaviour
         Instance = this;
     }
 
-    
+    //Actualise la barre de vie
     public void UpdateBar(HealthManager healthManager)
     {
         healthBarImage.fillAmount = healthManager.health / healthManager.maxHealth;

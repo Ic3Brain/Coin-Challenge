@@ -58,9 +58,6 @@ public class PassiveMobAI : MonoBehaviour
 		agent = GetComponent<NavMeshAgent>();
 		alertStage = AlertStage.Peaceful;
 		alertLevel = 0;
-
-		
-
 	}
 
 	private void Start()
@@ -73,7 +70,7 @@ public class PassiveMobAI : MonoBehaviour
 
 	
 
-
+	//Broute l'herbe 
 	IEnumerator Graze()
 	{
 		float timeToWait = Random.Range(3f, 10f);
@@ -100,7 +97,7 @@ public class PassiveMobAI : MonoBehaviour
 	}
 
 	
-
+	//Va a la position
 	IEnumerator GoToPosition(Vector3 position)
 	{
 		bool _isFleeing = false;
@@ -140,6 +137,7 @@ public class PassiveMobAI : MonoBehaviour
 		//animator.SetFloat("ForwardMove", 0f);
 	}
 
+	//Detecte le player si il est in range
 	public bool PlayerInRange()
 	{
 		bool playerInFOV = false;

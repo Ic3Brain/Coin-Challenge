@@ -34,7 +34,7 @@ public class DaggerController : MonoBehaviour
         }
     }
   
-
+    //Attaque du joueur
     private void AttackPlayer()
     {   
         Debug.Log("je suis appelé");

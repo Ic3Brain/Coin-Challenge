@@ -23,6 +23,7 @@ public class Toolbar : MonoBehaviour {
         ScrollWheelSlot();
     }
 
+    //Permet de scroll avec la molette et etre sur le bon index
     public void ScrollWheelSlot()
     {
         float scroll = Input.GetAxis("Mouse ScrollWheel");

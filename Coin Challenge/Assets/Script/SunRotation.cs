@@ -22,6 +22,7 @@ public class SunRotation : MonoBehaviour
         }
     }
 
+    //Permet la rotation de la lumière pour le système jour/nuit
     IEnumerator RotateLight()
     {
         float elapsedTime = 0f;
