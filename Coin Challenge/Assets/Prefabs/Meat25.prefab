@@ -158,7 +158,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 25
-  _isCollectable: 0
+  trigger: {fileID: 1368218769231232656}
+  eatDuration: 4
 --- !u!95 &2569737751290284925
 Animator:
   serializedVersion: 5

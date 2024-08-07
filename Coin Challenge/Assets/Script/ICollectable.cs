@@ -9,5 +9,7 @@ public interface ICollectable
     bool isCollectable
     {
         get;
+
+        set;
     }
 }

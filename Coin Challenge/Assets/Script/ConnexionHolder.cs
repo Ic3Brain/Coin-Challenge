@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +5,13 @@ public class ConnexionHolder : MonoBehaviour
 {
 
     public static ConnexionHolder Instance;
+
+    public int score;
+
+    public int killCount;
+
+    public float time;
+
     void Start()
     {   
         Instance = this;
@@ -20,7 +24,13 @@ public class ConnexionHolder : MonoBehaviour
         //Je met les infos la ? 
         if(Input.GetKeyDown(KeyCode.Y))
         {
-            SceneManager.LoadScene(2);
+            
         }
+    }
+
+    public void GetData()
+    {
+        score = CollectingMeat.instance.meatCount;
+        //mettre ici les infos 
     }
 }

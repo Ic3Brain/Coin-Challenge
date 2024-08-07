@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Linq;
+using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering;
+
 
 public class EnemyAi : MonoBehaviour
 {   
@@ -28,7 +28,9 @@ public class EnemyAi : MonoBehaviour
     [SerializeField]
     HealthManager healthManager;
     
-    List<GameObject> availableMeat = new List<GameObject>();
+    bool isEatingMeat;
+
+    
 
     
 
@@ -194,23 +196,35 @@ public class EnemyAi : MonoBehaviour
 
     //Regarde si il y a de la meat dans la zone
     public void LookForMeat()
-    {
+    {   
+        if(isEatingMeat)
+        return;
+
         Collider[] hitColliders = new Collider[10];
         int numbCollider = Physics.OverlapSphereNonAlloc(transform.position, sightRange, hitColliders, whatIsMeat, QueryTriggerInteraction.UseGlobal);
         
         if(numbCollider > 0)
         {
             meatInSightRange = true;
-            agent.SetDestination(hitColliders[0].transform.position);
+            
             StopAllCoroutines();
-            //StartCoroutine(EatMeat());
+            MeatCollectable meat = hitColliders[0].transform.root.GetComponent<MeatCollectable>();
+            StartCoroutine(EatMeat(meat));
+            
         }
     }
 
-    //public IEnumerator EatMeat()
-    //{
-        //stun le tigre pendant x temps
-        //meat dispawn après x temps quand tigre arrive sur la meat ?
-        
-    //}
+    public IEnumerator EatMeat(MeatCollectable meat)
+    {   
+        isEatingMeat = true;
+        meat.SetTriggerActive(false);
+        agent.SetDestination(meat.transform.position);
+        while(Vector3.Distance(transform.position, meat.transform.position) > 2.5f)
+        yield return null;
+        animator.SetFloat("ForwardMove", 0f);
+        yield return new WaitForSeconds(meat.eatDuration);
+        Destroy(meat.gameObject);
+        isEatingMeat = false;
+        StartCoroutine(PatrolingCorout());
+    }
 }

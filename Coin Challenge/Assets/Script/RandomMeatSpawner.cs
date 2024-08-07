@@ -19,9 +19,9 @@ public class RandomMeatSpawner : MonoBehaviour
     }
 
     public void SpawnMeat(int meatId, bool isCollectable, Vector3 spawnPos)
-    {
+    {   
         GameObject meatInstance = Instantiate(meat[meatId], spawnPos, Quaternion.identity);
         MeatCollectable meatCtrl = meatInstance.GetComponent<MeatCollectable>();
-        meatCtrl._isCollectable = isCollectable;
+        meatCtrl.isCollectable = isCollectable;
     }
 }

@@ -14,6 +14,7 @@ public class CollectingMeat : MonoBehaviour
     void Awake()
     {
         instance = this;
+        Debug.Log(gameObject.name);
     }
     
     void Update()

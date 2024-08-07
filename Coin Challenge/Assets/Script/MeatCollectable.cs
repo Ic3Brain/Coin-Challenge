@@ -5,7 +5,12 @@ using UnityEngine;
 public class MeatCollectable : MonoBehaviour, ICollectable
 {   
     [SerializeField]
-    int score;
+    public int score;
+
+    [SerializeField]
+    Collider trigger;
+
+    public float eatDuration = 4f;
 
     public bool isCollectable
     {
@@ -13,11 +18,22 @@ public class MeatCollectable : MonoBehaviour, ICollectable
         {
             return _isCollectable;
         }
+
+        set
+        {
+            _isCollectable = value;
+        }
     }
 
-    public bool _isCollectable;
+    private bool _isCollectable;
 
+    
+    public void SetTriggerActive(bool value)
+    {
+        trigger.enabled = value;
+    }
 
+    
     //Quand meat collected on ajoute le score et on détruit l'objet
     public void OnCollected()
     {
