@@ -18,7 +18,7 @@ public class AnimPlayerController : MonoBehaviour
     {
         PlayerAnimator.SetFloat("ForwardMove", Input.GetAxis("Vertical"));
         PlayerAnimator.SetFloat("SideMove", Input.GetAxis("Horizontal"));
-        
+        PlayerAnimator.SetFloat("Attack", Input.GetAxis("Fire1"));
         //animation du saut
         PlayerAnimator.SetFloat("Jump", Input.GetAxis("Jump"));
     }
