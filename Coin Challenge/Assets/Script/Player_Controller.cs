@@ -167,7 +167,8 @@ public class Player_Controller : MonoBehaviour, IDamageable
 
     //Si mort alors gameover
     public void OnKill()
-    {
+    {   
+        //IhmController.
         Debug.Log("je suis mort la honte");
     }
 

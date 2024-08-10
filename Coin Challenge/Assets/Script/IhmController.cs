@@ -5,13 +5,14 @@ using Unity.Mathematics;
 using UnityEngine;
 
 public class IhmController : MonoBehaviour
-{
-    [SerializeField]
-    TMP_Text timerText;
+{   
     public GameObject SoundPanel;
     public GameObject SettingsPanel;
     public GameObject GameOverPanel;
+    public static int scoreValue = 0;
+    public static IhmController instance;
     public float time = 10f;
+
     [SerializeField]
     GameManager gameManager;
 
@@ -23,9 +24,18 @@ public class IhmController : MonoBehaviour
 
     [SerializeField]
     AudioSource ambiantMusic;
+
+    [SerializeField]
+    TMP_Text score;
+
+     [SerializeField]
+    TMP_Text timerText;
+
     
-
-
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -38,6 +48,7 @@ public class IhmController : MonoBehaviour
     {
         TimeChrono();
         SettingsPanelOn();
+        KillCount();
     }
 
     //Affiche le panel de gestion du son 
@@ -88,5 +99,11 @@ public class IhmController : MonoBehaviour
         {
             SettingsPanel.SetActive(true);
         }
+    }
+
+    //compte le nombre de tigre tué
+    public void KillCount()
+    {
+        score.text = "Kill: " + scoreValue.ToString();
     }   
 }

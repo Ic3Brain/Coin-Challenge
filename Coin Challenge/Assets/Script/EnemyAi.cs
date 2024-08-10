@@ -214,6 +214,7 @@ public class EnemyAi : MonoBehaviour
         }
     }
 
+    //va manger la meat 
     public IEnumerator EatMeat(MeatCollectable meat)
     {   
         isEatingMeat = true;

@@ -33,6 +33,4 @@ public class LoadEndGameLoader : MonoBehaviour
         instance.onBeforeLoad.Invoke();
         SceneManager.LoadScene(2);
    }
-
-   
 }

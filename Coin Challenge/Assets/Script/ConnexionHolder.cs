@@ -21,16 +21,14 @@ public class ConnexionHolder : MonoBehaviour
     
     void Update()
     {
-        //Je met les infos la ? 
-        if(Input.GetKeyDown(KeyCode.Y))
-        {
-            
-        }
+
     }
 
     public void GetData()
     {
         score = CollectingMeat.instance.meatCount;
+        killCount = IhmController.scoreValue;
+        time = IhmController.instance.time;
         //mettre ici les infos 
     }
 }
