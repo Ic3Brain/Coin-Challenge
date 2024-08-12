@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class IhmController : MonoBehaviour
@@ -30,6 +31,9 @@ public class IhmController : MonoBehaviour
 
      [SerializeField]
     TMP_Text timerText;
+
+    [SerializeField]
+    Chronometer chronometer;
 
     
     void Awake()
@@ -67,6 +71,7 @@ public class IhmController : MonoBehaviour
     public void ResumeButton()
     {
         SettingsPanel.SetActive(false);
+        chronometer.OnApplicationPause(false);
     }
 
     //Boutton qui permet le restart de la partie quand mort
@@ -98,6 +103,7 @@ public class IhmController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             SettingsPanel.SetActive(true);
+            chronometer.OnApplicationPause(true);
         }
     }
 

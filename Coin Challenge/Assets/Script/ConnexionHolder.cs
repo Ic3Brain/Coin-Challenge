@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ConnexionHolder : MonoBehaviour
 {
@@ -28,7 +27,6 @@ public class ConnexionHolder : MonoBehaviour
     {
         score = CollectingMeat.instance.meatCount;
         killCount = IhmController.scoreValue;
-        time = IhmController.instance.time;
-        //mettre ici les infos 
+        time = Chronometer.instance.elapsedTime; 
     }
 }
