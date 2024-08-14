@@ -13,6 +13,7 @@ public class IhmController : MonoBehaviour
     public static int scoreValue = 0;
     public static IhmController instance;
     public float time = 10f;
+    private bool isPaused = false;
 
     [SerializeField]
     GameManager gameManager;
@@ -72,6 +73,7 @@ public class IhmController : MonoBehaviour
     {
         SettingsPanel.SetActive(false);
         chronometer.OnApplicationPause(false);
+        ChronoPause(false);
     }
 
     //Boutton qui permet le restart de la partie quand mort
@@ -79,22 +81,34 @@ public class IhmController : MonoBehaviour
     {   
         gameManager.Restart();
         GameOverPanel.SetActive(false);
+        
     }
 
+    
     //Chrono
     public IEnumerator TimeChrono()
     {
         while(time > 0)
         {   
-            time--;
+            if(!isPaused)
+            {
+                time--;
+                timerText.text = string.Format("{0:0}:{1:00}", Mathf.Floor(time / 60), time % 60);
+            }
+            
             yield return new WaitForSeconds(1);
-            timerText.text = string.Format("{0:0}:{1:00}", Mathf.Floor(time / 60), time % 60);
+            
         }
         if(time == 0)
         {   
             ambiantMusic.Stop();
             portalAttract.AttrackToPortal();
         }
+    }
+
+    public void ChronoPause(bool pauseStatus)
+    {
+        isPaused = pauseStatus;
     }
 
     //Boutton echap qui permet d'afficher le Menu pause
@@ -104,6 +118,7 @@ public class IhmController : MonoBehaviour
         {
             SettingsPanel.SetActive(true);
             chronometer.OnApplicationPause(true);
+            ChronoPause(true);
         }
     }
 

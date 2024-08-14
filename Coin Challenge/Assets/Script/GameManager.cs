@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UIElements.Experimental;
+
 
 public class GameManager : MonoBehaviour
 {   
@@ -11,12 +8,16 @@ public class GameManager : MonoBehaviour
     
     [SerializeField]
     private IhmController ihmController;
+    
     [SerializeField]
     private Player_Controller playerController;
      public static GameManager instance;
 
     [SerializeField]
     CollectingMeat collectingMeat;
+
+    [SerializeField]
+    Chronometer chronometer;
     
     void Awake()
     {
@@ -45,6 +46,8 @@ public class GameManager : MonoBehaviour
     public void OnGameOver()
     { 
         ihmController.GameOverPanel.SetActive(true);
+        chronometer.OnApplicationPause(true);
+        ihmController.ChronoPause(true);
     }
 
     //Restart du jeu 
@@ -53,6 +56,7 @@ public class GameManager : MonoBehaviour
         playerController.Respawn();
         collectingMeat.meatCount = 0;
         healthManager.health = healthManager.maxHealth;
-        ihmController.TimeChrono();
+        chronometer.elapsedTime = 0;
+        chronometer.OnApplicationPause(false);
     }
 }
