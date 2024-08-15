@@ -461,7 +461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 10
   trigger: {fileID: 1045478818214752445}
-  eatDuration: 4
+  eatDuration: 6
 --- !u!1 &5140198968123215076
 GameObject:
   m_ObjectHideFlags: 0

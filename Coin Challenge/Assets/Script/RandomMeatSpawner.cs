@@ -8,6 +8,10 @@ public class RandomMeatSpawner : MonoBehaviour
     public GameObject[] meat;
     
 
+    void Start()
+    {
+        SpawnMeat(1, transform.position);
+    }
 
     public void SpawnMeat(int meatCount, Vector3 spawnPosition)
     {
