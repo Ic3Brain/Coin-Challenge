@@ -29,15 +29,12 @@ public class DaggerController : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             AttackPlayer();
-            SFXAudioSource.clip = attack;
-            SFXAudioSource.Play();
         }
     }
   
     //Attaque du joueur
     private void AttackPlayer()
     {   
-        Debug.Log("je suis appelé");
         if(!alreadyAttacked)
         {   
             Collider[] hitDeer = Physics.OverlapSphere(weapon.transform.position, attackRange, layerMask);
@@ -54,6 +51,8 @@ public class DaggerController : MonoBehaviour
         }
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            SFXAudioSource.clip = attack;
+            SFXAudioSource.Play();
         }
     }
 

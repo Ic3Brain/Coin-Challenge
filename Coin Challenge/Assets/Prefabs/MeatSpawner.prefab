@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5395043994788706800}
   - component: {fileID: 3388437845493094749}
   - component: {fileID: 4479370033346340572}
-  - component: {fileID: 1840094809160443879}
+  - component: {fileID: 7071606338737198282}
   m_Layer: 0
   m_Name: MeatSpawner
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1840094809160443879
+--- !u!114 &7071606338737198282
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6000088978778848493}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9205d0946bd22849ba08c2b7439848b, type: 3}
+  m_Script: {fileID: 11500000, guid: d5415ec6f1733cb428dac78ef6c26af4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   meat:
@@ -102,3 +102,4 @@ MonoBehaviour:
   - {fileID: 4446042087989776518, guid: fdf19312d22c047f7b92ac36a4ac658d, type: 3}
   - {fileID: 963739717108670263, guid: a80c00c662fe74118b43ad9cbb58853c, type: 3}
   - {fileID: 3517465817000159781, guid: ba43438e580714421b77702924702e2b, type: 3}
+  randomMeatSpawner: {fileID: 0}

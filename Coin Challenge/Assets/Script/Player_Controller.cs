@@ -32,7 +32,7 @@ public class Player_Controller : MonoBehaviour, IDamageable
 
     float currentVelocity;
     float smoothTime = 0.05f;
-    public bool playerTouchTheGround = true;
+    
     public CollectingMeat collectingMeat;
     public Vector3 localPosition;
     public Quaternion localRotation;
@@ -52,6 +52,10 @@ public class Player_Controller : MonoBehaviour, IDamageable
             return healthManager.health > 0;
         }
     } 
+
+    bool isGrounded; 
+    float jumpCooldown = 0.2f; 
+    float lastJumpTime = 0f; 
     
 
     void Awake()
@@ -72,8 +76,6 @@ public class Player_Controller : MonoBehaviour, IDamageable
     
     void FixedUpdate()
     {
-        RaycastHit hit;
-        playerTouchTheGround = Physics.Raycast(transform.position, Vector3.down, out hit, 0.1f, groundDetectionMask);
         MovePlayer();
     }
 
@@ -83,6 +85,7 @@ public class Player_Controller : MonoBehaviour, IDamageable
     {
         inputDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         inputDir = inputDir.normalized;
+        CheckGrounded();
         PlayerJump();
         PlayerFall();
     }
@@ -118,24 +121,35 @@ public class Player_Controller : MonoBehaviour, IDamageable
         transform.rotation = Quaternion.Euler(0, playerAngleDamp, 0);
     }
 
-    //Saut du joueur
-    void PlayerJump()
+
+    public void PlayerJump()
     {
-        
-
-        Debug.DrawRay(transform.position, transform.up * 10, Color.red);
-
-        
-        
-        if(Input.GetButtonDown("Jump") && playerTouchTheGround)
+        if (Input.GetButtonDown("Jump") && isGrounded && Time.time > lastJumpTime + jumpCooldown)
         {   
-            SFXAudioSource.clip = jump;
-            SFXAudioSource.Play();
-            rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
-            playerTouchTheGround = false;
-        }
+        // Joue l'effet sonore de saut
+        SFXAudioSource.clip = jump;
+        SFXAudioSource.Play();
+        
+        // Applique une force vers le haut pour faire sauter le joueur
+        rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
 
+        // Met à jour le temps du dernier saut pour démarrer le délai
+        lastJumpTime = Time.time;
+
+        // Désactive temporairement la détection de sol pour éviter les détections prématurées
+        isGrounded = false;
+        }
     }
+
+    public void CheckGrounded()
+    {   
+        // On lance le raycast d'un peu au-dessus de la position du joueur pour une meilleure détection
+        isGrounded = Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, out RaycastHit hitInfo, 1.2f);
+
+        // Dessine le raycast pour la visualisation
+        Debug.DrawRay(transform.position + Vector3.up * 0.1f, Vector3.down * 1.2f, Color.red);
+    }
+
 
     //On détecte la col avec des meat puis on les collecte
     public void OnTriggerEnter(Collider Col)
@@ -169,6 +183,7 @@ public class Player_Controller : MonoBehaviour, IDamageable
     public void OnKill()
     {   
         gameManager.OnGameOver();
+        rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
 

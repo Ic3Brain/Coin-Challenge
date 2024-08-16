@@ -58,5 +58,6 @@ public class GameManager : MonoBehaviour
         healthManager.health = healthManager.maxHealth;
         chronometer.elapsedTime = 0;
         chronometer.OnApplicationPause(false);
+        
     }
 }

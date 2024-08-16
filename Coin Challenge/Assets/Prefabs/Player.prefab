@@ -159,7 +159,6 @@ MonoBehaviour:
   cam: {fileID: 0}
   jump: {fileID: 8300000, guid: 1898ae2f2cff8f24e984dc7717bee566, type: 3}
   SFXAudioSource: {fileID: 585065670487547984}
-  playerTouchTheGround: 1
   collectingMeat: {fileID: 0}
   localPosition: {x: 0, y: 0, z: 0}
   localRotation: {x: 0, y: 0, z: 0, w: 0}
@@ -487,7 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1440e1a18474824f975f61bd5ab159b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenAttacks: 1
+  timeBetweenAttacks: 2
   attackDamage: 10
   weapon: {fileID: 1430098190326459150}
   deer:

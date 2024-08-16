@@ -14,6 +14,7 @@ public class IhmController : MonoBehaviour
     public static IhmController instance;
     public float time = 10f;
     private bool isPaused = false;
+    public GameObject chronoImage;
 
     [SerializeField]
     GameManager gameManager;
@@ -103,6 +104,7 @@ public class IhmController : MonoBehaviour
         {   
             ambiantMusic.Stop();
             portalAttract.AttrackToPortal();
+            chronoImage.SetActive(false);
         }
     }
 
