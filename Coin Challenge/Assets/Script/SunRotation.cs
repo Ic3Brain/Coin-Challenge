@@ -5,25 +5,17 @@ public class SunRotation : MonoBehaviour
 {
     public float duration = 180f; // Duration in seconds (3 minutes)
     public float startRotationX = 0f; // Starting x rotation
-    public float endRotationX = 90f; // Ending x rotation
+    public float endRotationX = 50f; // Ending x rotation
 
     private Light lightSource;
 
     void Start()
     {
         lightSource = GetComponent<Light>();
-        if (lightSource == null)
-        {
-            Debug.LogError("Light component not found on the GameObject.");
-        }
-        else
-        {
-            StartCoroutine(RotateLight());
-        }
     }
 
     //Permet la rotation de la lumière pour le système jour/nuit
-    IEnumerator RotateLight()
+    public IEnumerator RotateLight()
     {
         float elapsedTime = 0f;
 
@@ -40,5 +32,19 @@ public class SunRotation : MonoBehaviour
         // Ensure the light reaches the final rotation
         transform.rotation = endRotation;
         Debug.Log("Light has reached the end rotation.");
+    }
+
+
+    public void StartSunRotation()
+    {
+        if (lightSource == null)
+        {
+            Debug.LogError("Light component not found on the GameObject.");
+        }
+        else
+        {   
+            StopCoroutine(RotateLight());
+            StartCoroutine(RotateLight());
+        }
     }
 }

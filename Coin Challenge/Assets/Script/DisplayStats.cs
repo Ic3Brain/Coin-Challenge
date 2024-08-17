@@ -7,8 +7,17 @@ public class DisplayStats : MonoBehaviour
     public TMP_Text killCountText;
     public TMP_Text timeText;
 
+    [SerializeField]
+    AudioSource ambiantMusic;
+
+    [SerializeField]
+    AudioClip EndGameMusic;
+
     void Start()
-    {
+    {   
+
+        ambiantMusic.clip = EndGameMusic;
+        ambiantMusic.Play();
         // Vérifier que ConnexionHolder existe
         if (ConnexionHolder.Instance != null)
         {

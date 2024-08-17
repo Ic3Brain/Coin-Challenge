@@ -486,7 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1440e1a18474824f975f61bd5ab159b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenAttacks: 2
+  timeBetweenAttacks: 0.9
   attackDamage: 10
   weapon: {fileID: 1430098190326459150}
   deer:

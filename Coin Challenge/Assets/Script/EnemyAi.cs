@@ -30,6 +30,11 @@ public class EnemyAi : MonoBehaviour
     
     bool isEatingMeat;
 
+    [SerializeField]
+    AudioClip attack;
+
+    [SerializeField]
+    AudioSource SFXAudioSource;
     
 
     
@@ -166,7 +171,9 @@ public class EnemyAi : MonoBehaviour
             hitPlayers = Physics.OverlapSphere(weapon.transform.position, attackRange, whatIsPlayer);
             Debug.Log(hitPlayers.Count());
             foreach (Collider playerCollider in hitPlayers)
-            {
+            {   
+                SFXAudioSource.clip = attack;
+                SFXAudioSource.Play();
                 Debug.Log(playerCollider.gameObject.name);
                 HealthManager player = playerCollider.transform.root.GetComponent<HealthManager>();
                 if (player != null)

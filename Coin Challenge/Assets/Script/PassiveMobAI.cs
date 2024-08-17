@@ -21,6 +21,12 @@ public class PassiveMobAI : MonoBehaviour
 	[SerializeField]
 	Animator animator;
 
+	[SerializeField]
+    AudioClip fleeing;
+
+    [SerializeField]
+    AudioSource SFXAudioSource;
+
 	
 
 	public float fov;
@@ -144,13 +150,15 @@ public class PassiveMobAI : MonoBehaviour
 		Collider[] targetsInFOV = Physics.OverlapSphere(transform.position, fov, whatIsPlayer);
 
 		foreach (Collider c in targetsInFOV)
-		{
+		{	
 			if (c.CompareTag("Player"))
-			{
+			{	
 				float signedAngle = Vector3.Angle(transform.forward, c.transform.position - transform.position);
 
 				if (Mathf.Abs(signedAngle) < fovAngle / 2)
 					playerInFOV = true;
+					SFXAudioSource.clip = fleeing;
+       				SFXAudioSource.Play();
 				break;
 			}
 		}

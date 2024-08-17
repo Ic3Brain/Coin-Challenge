@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     private HealthManager healthManager;
     
     [SerializeField]
-    private IhmController ihmController;
+    IhmController ihmController;
     
     [SerializeField]
     private Player_Controller playerController;
@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     Chronometer chronometer;
+
+    [SerializeField]
+    SunRotation sunRotation;
+
     
     void Awake()
     {
@@ -58,6 +62,7 @@ public class GameManager : MonoBehaviour
         healthManager.health = healthManager.maxHealth;
         chronometer.elapsedTime = 0;
         chronometer.OnApplicationPause(false);
-        
+        sunRotation.StartSunRotation();
+        IhmController.scoreValue = 0;
     }
 }

@@ -14,6 +14,7 @@ public class IhmController : MonoBehaviour
     public static IhmController instance;
     public float time = 10f;
     private bool isPaused = false;
+
     public GameObject chronoImage;
 
     [SerializeField]
@@ -36,6 +37,8 @@ public class IhmController : MonoBehaviour
 
     [SerializeField]
     Chronometer chronometer;
+    [SerializeField]
+    Player_Controller player_Controller;
 
     
     void Awake()
@@ -121,9 +124,11 @@ public class IhmController : MonoBehaviour
             SettingsPanel.SetActive(true);
             chronometer.OnApplicationPause(true);
             ChronoPause(true);
+            player_Controller.FreezeMovement();
         }
     }
 
+    
     //compte le nombre de tigre tué
     public void KillCount()
     {

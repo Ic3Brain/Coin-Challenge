@@ -186,6 +186,10 @@ public class Player_Controller : MonoBehaviour, IDamageable
         rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
+    public void FreezeMovement()
+    {
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+    }
 
     //Tue le joueur si en dessous de -4 y
     public void PlayerFall()
