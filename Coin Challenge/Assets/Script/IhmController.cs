@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class IhmController : MonoBehaviour
@@ -14,6 +11,7 @@ public class IhmController : MonoBehaviour
     public static IhmController instance;
     public float time = 10f;
     private bool isPaused = false;
+
 
     public GameObject chronoImage;
 
@@ -39,6 +37,11 @@ public class IhmController : MonoBehaviour
     Chronometer chronometer;
     [SerializeField]
     Player_Controller player_Controller;
+    
+    [SerializeField]
+    FreeLookCamera freeLookCamera;
+
+    
 
     
     void Awake()
@@ -78,6 +81,7 @@ public class IhmController : MonoBehaviour
         SettingsPanel.SetActive(false);
         chronometer.OnApplicationPause(false);
         ChronoPause(false);
+        freeLookCamera.Unlock();
     }
 
     //Boutton qui permet le restart de la partie quand mort
@@ -125,8 +129,11 @@ public class IhmController : MonoBehaviour
             chronometer.OnApplicationPause(true);
             ChronoPause(true);
             player_Controller.FreezeMovement();
+            freeLookCamera.Lock();
         }
     }
+
+    
 
     
     //compte le nombre de tigre tué
