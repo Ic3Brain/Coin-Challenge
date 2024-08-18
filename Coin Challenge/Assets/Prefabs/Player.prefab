@@ -167,6 +167,8 @@ MonoBehaviour:
   groundDetectionMask:
     serializedVersion: 2
     m_Bits: 439
+  animator: {fileID: 4406138837892589488}
+  player: {fileID: 5880066754243179217}
 --- !u!114 &6335921601610843906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,6 +500,7 @@ MonoBehaviour:
     m_Bits: 823
   attack: {fileID: 8300000, guid: 7859eb6e30ebb254380709cf706eee75, type: 3}
   SFXAudioSource: {fileID: 243625224238084569}
+  animator: {fileID: 4406138837892589488}
 --- !u!82 &243625224238084569
 AudioSource:
   m_ObjectHideFlags: 0
@@ -682,6 +685,11 @@ PrefabInstance:
 --- !u!4 &4406138837530612367 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4957605394326949008, guid: 4f46098734d87e24490aef9267915ad2, type: 3}
+  m_PrefabInstance: {fileID: 8784636366118690335}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4406138837892589488 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4957605393579145647, guid: 4f46098734d87e24490aef9267915ad2, type: 3}
   m_PrefabInstance: {fileID: 8784636366118690335}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &4406138837892589489 stripped

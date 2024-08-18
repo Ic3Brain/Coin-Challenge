@@ -1,12 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
-using TMPro;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class Player_Controller : MonoBehaviour, IDamageable
 {
@@ -44,6 +37,11 @@ public class Player_Controller : MonoBehaviour, IDamageable
     HealthManager healthManager;
     
     [SerializeField] LayerMask groundDetectionMask;
+
+    [SerializeField]
+    Animator animator;
+
+    public GameObject player;
 
     public bool IsAlive
     {
@@ -182,8 +180,8 @@ public class Player_Controller : MonoBehaviour, IDamageable
     //Si mort alors gameover
     public void OnKill()
     {   
+        player.SetActive(false);
         gameManager.OnGameOver();
-        rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
     public void FreezeMovement()
@@ -191,15 +189,33 @@ public class Player_Controller : MonoBehaviour, IDamageable
         rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
+    public void UnFreezeMovement()
+    {
+        rb.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;	
+    }
+
     //Tue le joueur si en dessous de -4 y
     public void PlayerFall()
     {
         if(transform.position.y < -4)
         {   
-            rb.constraints = RigidbodyConstraints.FreezeAll;
+            player.SetActive(false);
             gameManager.OnGameOver();
         }
-        else
-        rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
+    }
+
+    public void DisableJumpComponents()
+    {
+        animator.enabled = false;
+        
+        SFXAudioSource.mute = true;
+    }
+
+    // Réactiver animation et son
+    public void EnableJumpComponents()
+    {
+        animator.enabled = true;
+    
+        SFXAudioSource.mute = false;
     }
 }

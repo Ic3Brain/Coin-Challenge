@@ -64,5 +64,6 @@ public class GameManager : MonoBehaviour
         chronometer.OnApplicationPause(false);
         sunRotation.StartSunRotation();
         IhmController.scoreValue = 0;
+        playerController.player.SetActive(true);
     }
 }

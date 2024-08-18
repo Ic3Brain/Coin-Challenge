@@ -1,5 +1,7 @@
 using System.Collections;
 using TMPro;
+using UnityEditor.Callbacks;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class IhmController : MonoBehaviour
@@ -40,6 +42,9 @@ public class IhmController : MonoBehaviour
     
     [SerializeField]
     FreeLookCamera freeLookCamera;
+
+    [SerializeField]
+    DaggerController daggerController;
 
     
 
@@ -82,6 +87,9 @@ public class IhmController : MonoBehaviour
         chronometer.OnApplicationPause(false);
         ChronoPause(false);
         freeLookCamera.Unlock();
+        player_Controller.UnFreezeMovement();
+        daggerController.EnableAttackComponents();
+        player_Controller.EnableJumpComponents();
     }
 
     //Boutton qui permet le restart de la partie quand mort
@@ -130,6 +138,8 @@ public class IhmController : MonoBehaviour
             ChronoPause(true);
             player_Controller.FreezeMovement();
             freeLookCamera.Lock();
+            daggerController.DisableAttackComponents();
+            player_Controller.DisableJumpComponents();
         }
     }
 

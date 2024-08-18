@@ -22,14 +22,14 @@ public class DaggerController : MonoBehaviour
 
     [SerializeField]
     AudioSource SFXAudioSource;
+
+    [SerializeField]
+    Animator animator;
     
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            AttackPlayer();
-        }
+        Attack();
     }
   
     //Attaque du joueur
@@ -51,14 +51,46 @@ public class DaggerController : MonoBehaviour
         }
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
-            SFXAudioSource.clip = attack;
-            SFXAudioSource.Play();
+            if (SFXAudioSource != null)
+            {
+                SFXAudioSource.clip = attack;
+                SFXAudioSource.Play();
+            }
         }
     }
+
+
+    public void Attack()
+    {   
+        
+        if(Input.GetMouseButtonDown(0))
+        {
+            AttackPlayer();
+        }
+    }
+
 
     //reset l'attaque
     private void ResetAttack()
     {
         alreadyAttacked = false;
     } 
+
+
+    // Désactiver animation et son
+    public void DisableAttackComponents()
+    {
+        animator.enabled = false;
+        
+        SFXAudioSource.mute = true;
+    }
+
+    // Réactiver animation et son
+    public void EnableAttackComponents()
+    {
+        animator.enabled = true;
+    
+        SFXAudioSource.mute = false;
+    }
+
 }
