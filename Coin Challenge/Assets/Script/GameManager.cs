@@ -62,6 +62,8 @@ public class GameManager : MonoBehaviour
         healthManager.health = healthManager.maxHealth;
         chronometer.elapsedTime = 0;
         chronometer.OnApplicationPause(false);
+        ihmController.StopChrono();
+        ihmController.StartChrono(10);
         sunRotation.StartSunRotation();
         IhmController.scoreValue = 0;
         playerController.player.SetActive(true);

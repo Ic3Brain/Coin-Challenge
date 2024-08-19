@@ -17,6 +17,8 @@ public class PortalAttract : MonoBehaviour
     [SerializeField]
     PortalAttract targetPortal;
     
+    [SerializeField]
+    Player_Controller playerController;
 
 
     public void AttrackToPortal()
@@ -28,6 +30,7 @@ public class PortalAttract : MonoBehaviour
     IEnumerator AttrackPortalCorrout()
     {
         this.rb.useGravity = false;
+        playerController.DisablePlayerCollider();
         float size = 1;
         do 
         {   
@@ -39,10 +42,16 @@ public class PortalAttract : MonoBehaviour
             size = Mathf.InverseLerp(0, startShrinkingDist, actualDistance);
             rb.transform.localScale = new Vector3(size, size, size);
             yield return null;
-        }
+        }  
         while (actualDistance > 1);
 
         rb.transform.position = targetPortal.transform.position;
+
+        if(actualDistance < 2)
+        {
+            playerController.EnablePlayerCollider();
+        }
+        
         targetPortal.StartCoroutine(targetPortal.ExpulseCorrout());
     }
 

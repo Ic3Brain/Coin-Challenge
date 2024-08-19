@@ -11,11 +11,10 @@ public class IhmController : MonoBehaviour
     public GameObject GameOverPanel;
     public static int scoreValue = 0;
     public static IhmController instance;
-    public float time = 10f;
+    public float time = 180f;
     private bool isPaused = false;
-
-
     public GameObject chronoImage;
+    private Coroutine chronoCoroutine;
 
     [SerializeField]
     GameManager gameManager;
@@ -56,14 +55,12 @@ public class IhmController : MonoBehaviour
 
     void Start()
     {
-       StartCoroutine(TimeChrono());
        ambiantMusic.clip = huntZoneMusic;
        ambiantMusic.Play();
     }
     
     void Update()
     {
-        TimeChrono();
         SettingsPanelOn();
         KillCount();
     }
@@ -96,11 +93,35 @@ public class IhmController : MonoBehaviour
     public void RestartButton()
     {   
         gameManager.Restart();
-        GameOverPanel.SetActive(false);
-        
+        GameOverPanel.SetActive(false); 
+    }
+    
+
+    // Démarre le chronomètre
+    public void StartChrono(float startTime)
+    {
+        time = startTime; // Réinitialise le temps
+        UpdateTimerText(); // Mise à jour immédiate de l'affichage
+        isPaused = false; // Assurez-vous que le chrono n'est pas en pause
+
+        if (chronoCoroutine != null)
+        {
+            StopCoroutine(chronoCoroutine);
+        }
+        chronoCoroutine = StartCoroutine(TimeChrono());
     }
 
-    
+    // Arrête le chronomètre
+    public void StopChrono()
+    {
+        if (chronoCoroutine != null)
+        {
+            StopCoroutine(chronoCoroutine);
+            chronoCoroutine = null;
+        }
+    }
+
+
     //Chrono
     public IEnumerator TimeChrono()
     {
@@ -109,19 +130,28 @@ public class IhmController : MonoBehaviour
             if(!isPaused)
             {
                 time--;
-                timerText.text = string.Format("{0:0}:{1:00}", Mathf.Floor(time / 60), time % 60);
+                UpdateTimerText();
+                 yield return new WaitForSeconds(1);
             }
-            
-            yield return new WaitForSeconds(1);
+            else
+            {
+                yield return null;
+            }
+
             
         }
-        if(time == 0)
+        if(time <= 0)
         {   
             ambiantMusic.Stop();
             portalAttract.AttrackToPortal();
             chronoImage.SetActive(false);
         }
     }
+
+    private void UpdateTimerText()
+    {
+        timerText.text = string.Format("{0:0}:{1:00}", Mathf.Floor(time / 60), time % 60);
+    }   
 
     public void ChronoPause(bool pauseStatus)
     {
@@ -142,9 +172,6 @@ public class IhmController : MonoBehaviour
             player_Controller.DisableJumpComponents();
         }
     }
-
-    
-
     
     //compte le nombre de tigre tué
     public void KillCount()

@@ -218,4 +218,14 @@ public class Player_Controller : MonoBehaviour, IDamageable
     
         SFXAudioSource.mute = false;
     }
+
+    public void DisablePlayerCollider()
+    {
+        player.GetComponent<CapsuleCollider>().enabled = false;
+    }
+
+    public void EnablePlayerCollider()
+    {
+        player.GetComponent<CapsuleCollider>().enabled = true;
+    }
 }
