@@ -12,9 +12,6 @@ public class PortalAttract : MonoBehaviour
 	Rigidbody rb;
 
 	[SerializeField]
-	float startShrinkingDist = 10f;
-
-	[SerializeField]
 	PortalAttract targetPortal;
 
 	[SerializeField] LayerMask layerMask;

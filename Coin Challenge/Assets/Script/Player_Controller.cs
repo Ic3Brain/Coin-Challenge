@@ -51,11 +51,7 @@ public class Player_Controller : MonoBehaviour, IDamageable
         {
             return healthManager.health > 0;
         }
-    } 
-
-    bool isGrounded; 
-    float jumpCooldown = 0.2f; 
-    float lastJumpTime = 0f; 
+    }  
     
 
     void Awake()
@@ -124,8 +120,6 @@ public class Player_Controller : MonoBehaviour, IDamageable
 
     void PlayerJump()
  {
-
-
      Debug.DrawRay(transform.position, transform.up * 10, Color.red);
 
     if(Input.GetButtonDown("Jump") && playerTouchTheGround)
@@ -213,15 +207,5 @@ public class Player_Controller : MonoBehaviour, IDamageable
         animator.enabled = true;
     
         SFXAudioSource.mute = false;
-    }
-
-    public void DisablePlayerCollider()
-    {
-        player.GetComponent<CapsuleCollider>().enabled = false;
-    }
-
-    public void EnablePlayerCollider()
-    {
-        player.GetComponent<CapsuleCollider>().enabled = true;
     }
 }
