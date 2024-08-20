@@ -26,9 +26,12 @@ public class PlayerDropMeat : MonoBehaviour
 
         if(Input.GetMouseButtonDown(1))
         {   
+            if(!canSpawnMeat)
+            {
+                return;
+            }
             randomMeatSpawner.SpawnMeat(currentSlotIndex, false, transform.position);
             StartCoroutine(StartCooldown());
-            Debug.Log("je suis appelé" + StartCoroutine(StartCooldown()));
         }   
     }
 
@@ -38,6 +41,5 @@ public class PlayerDropMeat : MonoBehaviour
         canSpawnMeat = false;
         yield return new WaitForSeconds(meatSpawnCooldown);
         canSpawnMeat = true;
-        Debug.Log("Cooldown finished, can spawn meat again.");
     }
 }

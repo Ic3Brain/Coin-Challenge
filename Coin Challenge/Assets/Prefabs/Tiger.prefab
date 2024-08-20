@@ -272,8 +272,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc869197d9d00a74c9b3286a933feaf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
-  maxHealth: 1
+  health: 100
+  maxHealth: 100
+  rend: {fileID: 9059862833031523103}
+  damageMat: {fileID: 2100000, guid: f4e195ac1e204eff960149d1cb34e18c, type: 2}
 --- !u!114 &5425720261264100499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,7 +288,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbece4d25dc79934fb60e8f8a32dfb99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthManager: {fileID: 4706527295174288910}
 --- !u!65 &6389713238137247186
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -316,7 +317,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8468549588457754747}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: 1479372276
   m_Radius: 0.5
   m_Speed: 1
   m_Acceleration: 12
@@ -482,6 +483,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 67fdf13761bfc234a8602d6bc1348f5f, type: 2}
+    - target: {fileID: 13700000, guid: 0faaca137bc5a794098e6b71f8bb22f6, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -495,6 +500,11 @@ Transform:
 --- !u!4 &9059862833026349887 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400256, guid: 0faaca137bc5a794098e6b71f8bb22f6, type: 3}
+  m_PrefabInstance: {fileID: 9059862833026212031}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &9059862833031523103 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 13700000, guid: 0faaca137bc5a794098e6b71f8bb22f6, type: 3}
   m_PrefabInstance: {fileID: 9059862833026212031}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &9059862833035630047 stripped

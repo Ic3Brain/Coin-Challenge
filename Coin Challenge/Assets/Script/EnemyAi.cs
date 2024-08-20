@@ -89,9 +89,20 @@ public class EnemyAi : MonoBehaviour
 
         if(!walkPointSet) SearchWalkPoint();
 
+        
+
         if(walkPointSet)
             agent.SetDestination(walkpoint);
 
+        while (agent.pathPending)
+			yield return null;
+
+		if (agent.pathStatus != NavMeshPathStatus.PathComplete)
+		{
+			Debug.Log(agent.pathStatus);
+            walkPointSet = false;
+			yield break;
+		}
         
 
             Vector3 distanceToWalkPoint;

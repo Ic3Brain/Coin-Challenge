@@ -25,6 +25,8 @@ public class Player_Controller : MonoBehaviour, IDamageable
 
     float currentVelocity;
     float smoothTime = 0.05f;
+
+    public bool playerTouchTheGround = false; 
     
     public CollectingMeat collectingMeat;
     public Vector3 localPosition;
@@ -73,7 +75,8 @@ public class Player_Controller : MonoBehaviour, IDamageable
     }
     
     void FixedUpdate()
-    {
+    {   
+        CheckGrounded();
         MovePlayer();
     }
 
@@ -83,7 +86,6 @@ public class Player_Controller : MonoBehaviour, IDamageable
     {
         inputDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         inputDir = inputDir.normalized;
-        CheckGrounded();
         PlayerJump();
         PlayerFall();
     }
@@ -120,32 +122,26 @@ public class Player_Controller : MonoBehaviour, IDamageable
     }
 
 
-    public void PlayerJump()
-    {
-        if (Input.GetButtonDown("Jump") && isGrounded && Time.time > lastJumpTime + jumpCooldown)
-        {   
-        // Joue l'effet sonore de saut
-        SFXAudioSource.clip = jump;
-        SFXAudioSource.Play();
-        
-        // Applique une force vers le haut pour faire sauter le joueur
-        rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
+    void PlayerJump()
+ {
 
-        // Met à jour le temps du dernier saut pour démarrer le délai
-        lastJumpTime = Time.time;
 
-        // Désactive temporairement la détection de sol pour éviter les détections prématurées
-        isGrounded = false;
-        }
-    }
+     Debug.DrawRay(transform.position, transform.up * 10, Color.red);
+
+    if(Input.GetButtonDown("Jump") && playerTouchTheGround)
+     {
+         SFXAudioSource.clip = jump;
+         SFXAudioSource.Play();
+         rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
+         playerTouchTheGround = false;
+     }
+
+ }
 
     public void CheckGrounded()
     {   
-        // On lance le raycast d'un peu au-dessus de la position du joueur pour une meilleure détection
-        isGrounded = Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, out RaycastHit hitInfo, 1.2f);
-
-        // Dessine le raycast pour la visualisation
-        Debug.DrawRay(transform.position + Vector3.up * 0.1f, Vector3.down * 1.2f, Color.red);
+        RaycastHit hit;
+        playerTouchTheGround = Physics.Raycast(transform.position + new Vector3(0, 0.15f, 0), Vector3.down, out hit, 0.3f, groundDetectionMask);
     }
 
 

@@ -3,34 +3,41 @@ using UnityEngine;
 
 public class PortalAttract : MonoBehaviour
 {
-    
-    public float attractionForce = 10;
-    public float maxDistance = 100;
-    public float actualDistance;
 
-    [SerializeField]
-    Rigidbody rb;
+	public float attractionForce = 10;
+	public float maxDistance = 100;
+	public float actualDistance;
 
-    [SerializeField]
-    float startShrinkingDist = 10f;
+	[SerializeField]
+	Rigidbody rb;
 
-    [SerializeField]
-    PortalAttract targetPortal;
-    
-    [SerializeField]
-    Player_Controller playerController;
+	[SerializeField]
+	float startShrinkingDist = 10f;
 
+	[SerializeField]
+	PortalAttract targetPortal;
 
-    public void AttrackToPortal()
-    {   
-        StartCoroutine(AttrackPortalCorrout());
-    }
+	[SerializeField] LayerMask layerMask;
 
-    //Attire le joueur vers le portail
+	[SerializeField] PlayerAttractionFxCtrl _fxCtrl;
+
+	private void Update()
+	{
+		Debug.Log("test");
+		if (Input.GetKeyDown(KeyCode.Space)) AttrackToPortal();
+	}
+
+	public void AttrackToPortal()
+	{
+
+		StartCoroutine(AttrackPortalCorrout());
+	}
+
+	//Attire le joueur vers le portail
+	/*
     IEnumerator AttrackPortalCorrout()
     {
         this.rb.useGravity = false;
-        playerController.DisablePlayerCollider();
         float size = 1;
         do 
         {   
@@ -42,33 +49,51 @@ public class PortalAttract : MonoBehaviour
             size = Mathf.InverseLerp(0, startShrinkingDist, actualDistance);
             rb.transform.localScale = new Vector3(size, size, size);
             yield return null;
-        }  
-        while (actualDistance > 1);
+        }
+        while (actualDistance > 2);
 
         rb.transform.position = targetPortal.transform.position;
-
-        if(actualDistance < 2)
-        {
-            playerController.EnablePlayerCollider();
-        }
-        
         targetPortal.StartCoroutine(targetPortal.ExpulseCorrout());
-    }
+    }*/
 
-    //Redonne la taille normal au player
-    IEnumerator ExpulseCorrout()
-    {   
-        Debug.Log("expulse corrout");
-        float t = 0;
-        float size = 0;
-        rb.velocity = Vector3.zero;
-        rb.useGravity = true;
-        while(t < 1.1f)
-        {   
-            t += Time.deltaTime;
-            size = Mathf.Lerp(0, 1, t);
-            rb.transform.localScale = new Vector3(size, size, size);
-            yield return null;
-        }
-    }
+	IEnumerator AttrackPortalCorrout()
+	{
+		_fxCtrl.transform.LookAt(transform.position);
+		yield return _fxCtrl.FadeIn();
+		rb.isKinematic = true;
+		float _speed = 10;
+		float _dist;
+
+		do
+		{
+			Vector3 posTmp = Vector3.MoveTowards(_fxCtrl.transform.position, transform.position, Time.deltaTime * _speed);
+			_speed += Time.deltaTime * 3f;
+			/*if (Physics.CheckSphere(posTmp, 3, layerMask))
+				posTmp.y += Time.deltaTime * 5f;*/
+			_fxCtrl.transform.position = posTmp;
+			_dist = Vector3.Distance(_fxCtrl.transform.position, transform.position);
+			yield return null;
+		}
+		while (_dist > 0.5f);
+
+        rb.transform.position = targetPortal.transform.position;
+        targetPortal.StartCoroutine(targetPortal.ExpulseCorrout());
+	}
+
+	//Redonne la taille normal au player
+	IEnumerator ExpulseCorrout()
+	{
+		Debug.Log("expulse corrout");
+		float t = 0;
+		float size = 0;
+		rb.velocity = Vector3.zero;
+		rb.useGravity = true;
+		while (t < 1.1f)
+		{
+			t += Time.deltaTime;
+			size = Mathf.Lerp(0, 1, t);
+			rb.transform.localScale = new Vector3(size, size, size);
+			yield return null;
+		}
+	}
 }

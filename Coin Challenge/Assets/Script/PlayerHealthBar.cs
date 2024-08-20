@@ -19,7 +19,7 @@ public class PlayerHealthBar : MonoBehaviour
     //Actualise la barre de vie
     public void UpdateBar(HealthManager healthManager)
     {
-        healthBarImage.fillAmount = healthManager.health / healthManager.maxHealth;
+        healthBarImage.fillAmount = healthManager.healthRate;
         healthText.text = healthManager.health + " / " + healthManager.maxHealth;
         healthManager.health = Mathf.Clamp(healthManager.health, 0f, healthManager.maxHealth);
     }

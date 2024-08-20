@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
     {   
         playerController.Respawn();
         collectingMeat.meatCount = 0;
-        healthManager.health = healthManager.maxHealth;
+        healthManager.health = 100;
         chronometer.elapsedTime = 0;
         chronometer.OnApplicationPause(false);
         ihmController.StopChrono();

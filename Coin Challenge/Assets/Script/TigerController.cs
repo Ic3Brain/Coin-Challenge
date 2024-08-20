@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TigerController : MonoBehaviour, IDamageable
-{   [SerializeField]
-    HealthManager healthManager;
+{   
 
     public bool IsAlive => throw new System.NotImplementedException();
 
@@ -17,7 +16,7 @@ public class TigerController : MonoBehaviour, IDamageable
     //Prend des damages
     public void OnDamage(float damage)
     {
-        healthManager.RemoveHealth(damage);
+       
     }
 
 }
