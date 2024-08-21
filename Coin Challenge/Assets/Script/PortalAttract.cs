@@ -4,10 +4,6 @@ using UnityEngine;
 public class PortalAttract : MonoBehaviour
 {
 
-	public float attractionForce = 10;
-	public float maxDistance = 100;
-	public float actualDistance;
-
 	[SerializeField]
 	Rigidbody rb;
 
@@ -17,12 +13,6 @@ public class PortalAttract : MonoBehaviour
 	[SerializeField] LayerMask layerMask;
 
 	[SerializeField] PlayerAttractionFxCtrl _fxCtrl;
-
-	private void Update()
-	{
-		Debug.Log("test");
-		if (Input.GetKeyDown(KeyCode.Space)) AttrackToPortal();
-	}
 
 	public void AttrackToPortal()
 	{

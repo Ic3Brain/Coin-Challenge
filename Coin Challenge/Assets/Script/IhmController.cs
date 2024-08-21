@@ -36,11 +36,12 @@ public class IhmController : MonoBehaviour
 
     [SerializeField]
     Chronometer chronometer;
+    
     [SerializeField]
     Player_Controller player_Controller;
     
     [SerializeField]
-    FreeLookCamera freeLookCamera;
+    public FreeLookCamera freeLookCamera;
 
     [SerializeField]
     DaggerController daggerController;

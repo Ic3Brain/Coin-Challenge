@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     SunRotation sunRotation;
 
+    private EnemyAi[] enemies;
+
+
     
     void Awake()
     {
@@ -52,20 +55,31 @@ public class GameManager : MonoBehaviour
         ihmController.GameOverPanel.SetActive(true);
         chronometer.OnApplicationPause(true);
         ihmController.ChronoPause(true);
+        ihmController.freeLookCamera.Lock();
     }
 
     //Restart du jeu 
     public void Restart()
     {   
+        healthManager.health = healthManager.maxHealth;
+        PlayerHealthBar.Instance.UpdateBar(healthManager);
         playerController.Respawn();
         collectingMeat.meatCount = 0;
-        healthManager.health = 100;
         chronometer.elapsedTime = 0;
         chronometer.OnApplicationPause(false);
         ihmController.StopChrono();
-        ihmController.StartChrono(10);
+        ihmController.StartChrono(180);
         sunRotation.StartSunRotation();
         IhmController.scoreValue = 0;
         playerController.player.SetActive(true);
+        ihmController.freeLookCamera.Unlock();
+
+        enemies = FindObjectsOfType<EnemyAi>();
+
+        foreach(EnemyAi enemy in enemies)
+        {
+            //StopAllCoroutines();
+            StartCoroutine(enemy.PatrolingCorout());
+        }
     }
 }

@@ -119,18 +119,18 @@ public class Player_Controller : MonoBehaviour, IDamageable
 
 
     void PlayerJump()
- {
+    {
      Debug.DrawRay(transform.position, transform.up * 10, Color.red);
 
-    if(Input.GetButtonDown("Jump") && playerTouchTheGround)
-     {
-         SFXAudioSource.clip = jump;
-         SFXAudioSource.Play();
-         rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
-         playerTouchTheGround = false;
-     }
+        if(Input.GetButtonDown("Jump") && playerTouchTheGround)
+        {
+            SFXAudioSource.clip = jump;
+            SFXAudioSource.Play();
+            rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
+            playerTouchTheGround = false;
+        }  
 
- }
+    }
 
     public void CheckGrounded()
     {   

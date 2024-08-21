@@ -36,7 +36,6 @@ public class EnemyAi : MonoBehaviour
     [SerializeField]
     AudioSource SFXAudioSource;
     
-
     
 
     bool playerInSightRange
@@ -62,7 +61,7 @@ public class EnemyAi : MonoBehaviour
     
 
     private void Awake()
-    {
+    {   
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
@@ -70,7 +69,6 @@ public class EnemyAi : MonoBehaviour
     public void Start()
     {   
         playerHealthManager = player.gameObject.GetComponent<HealthManager>();
-        StartCoroutine(PatrolingCorout());
     }
 
 
@@ -80,8 +78,13 @@ public class EnemyAi : MonoBehaviour
     }
 
 
+    
+    
+        
+    
+
     //Avance ou il peut avancer
-    private IEnumerator PatrolingCorout()
+    public IEnumerator PatrolingCorout()
     {   
         
         do
@@ -192,7 +195,6 @@ public class EnemyAi : MonoBehaviour
                     healthManager.RemoveHealth(attackDamage);
                     if(!healthManager.IsAlive)
                     yield break;
-                    Debug.Log("Player attacked! Damage: " + attackDamage);
                 }
 
                 yield return new WaitForSeconds(timeBetweenAttacks);

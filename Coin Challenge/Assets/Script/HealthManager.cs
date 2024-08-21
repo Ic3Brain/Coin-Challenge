@@ -63,7 +63,7 @@ public class HealthManager : MonoBehaviour
         Material originalMat = rend.material;
 
         rend.material = damageMat;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
         rend.material = originalMat; 
     }
     

@@ -275,7 +275,7 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   rend: {fileID: 9059862833031523103}
-  damageMat: {fileID: 2100000, guid: f4e195ac1e204eff960149d1cb34e18c, type: 2}
+  damageMat: {fileID: -3846018093981099296, guid: d36cb6429389843309993f592cb0aa63, type: 3}
 --- !u!114 &5425720261264100499
 MonoBehaviour:
   m_ObjectHideFlags: 0
