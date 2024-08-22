@@ -252,9 +252,11 @@ MonoBehaviour:
   walkPointRange: 5
   timeBetweenAttacks: 1
   sightRange: 10
-  attackRange: 2
+  attackRange: 3
   meatInSightRange: 0
   attackDamage: 25
+  chaseSpeed: 10
+  normalSpeed: 1
   weapon: {fileID: 2006677070268930913}
   animator: {fileID: 9059862833035630047}
   healthManager: {fileID: 0}

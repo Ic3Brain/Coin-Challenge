@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.ProBuilder.Shapes;
+
 
 
 public class PlayerAttractionFxCtrl : MonoBehaviour
@@ -57,6 +56,28 @@ public class PlayerAttractionFxCtrl : MonoBehaviour
 		_particles.gameObject.SetActive(true);
 	}
 
+	public Coroutine FadeOut()
+	{
+    	return StartCoroutine(FadeOutCorout());
+	}
+
+	IEnumerator FadeOutCorout()
+	{
+    	float t = 0;
+
+    while (t < 1.1f)
+    {
+        _matInst.SetFloat("_rate", Mathf.Lerp(1f, 0f, t));
+        t += Time.deltaTime;
+        yield return null;
+    }
+
+    	_sphere.transform.localScale = Vector3.one;
+    	_sphere.transform.localPosition = Vector3.zero;
+    	yield return StartCoroutine(SetSize(playerMesh, Vector3.one, 3f));
+    	_particles.gameObject.SetActive(false);
+	}
+
 	IEnumerator SetSize(GameObject _go, Vector3 _targetScale, float speed)
 	{
 		float t = 0;
@@ -71,11 +92,6 @@ public class PlayerAttractionFxCtrl : MonoBehaviour
 
 	}
 
-	// Update is called once per frame
-	void Update()
-	{
-
-	}
 
 	void GetAllRenderers()
 	{

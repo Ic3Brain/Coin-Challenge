@@ -10,13 +10,12 @@ public class PortalAttract : MonoBehaviour
 	[SerializeField]
 	PortalAttract targetPortal;
 
-	[SerializeField] LayerMask layerMask;
-
 	[SerializeField] PlayerAttractionFxCtrl _fxCtrl;
 
+
+	
 	public void AttrackToPortal()
 	{
-
 		StartCoroutine(AttrackPortalCorrout());
 	}
 
@@ -55,8 +54,6 @@ public class PortalAttract : MonoBehaviour
 		{
 			Vector3 posTmp = Vector3.MoveTowards(_fxCtrl.transform.position, transform.position, Time.deltaTime * _speed);
 			_speed += Time.deltaTime * 3f;
-			/*if (Physics.CheckSphere(posTmp, 3, layerMask))
-				posTmp.y += Time.deltaTime * 5f;*/
 			_fxCtrl.transform.position = posTmp;
 			_dist = Vector3.Distance(_fxCtrl.transform.position, transform.position);
 			yield return null;
@@ -70,17 +67,10 @@ public class PortalAttract : MonoBehaviour
 	//Redonne la taille normal au player
 	IEnumerator ExpulseCorrout()
 	{
-		Debug.Log("expulse corrout");
-		float t = 0;
-		float size = 0;
+		yield return _fxCtrl.FadeOut();
+		
+		rb.isKinematic = false;
 		rb.velocity = Vector3.zero;
 		rb.useGravity = true;
-		while (t < 1.1f)
-		{
-			t += Time.deltaTime;
-			size = Mathf.Lerp(0, 1, t);
-			rb.transform.localScale = new Vector3(size, size, size);
-			yield return null;
-		}
 	}
 }

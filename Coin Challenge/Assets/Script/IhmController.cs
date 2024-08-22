@@ -1,8 +1,7 @@
 using System.Collections;
 using TMPro;
-using UnityEditor.Callbacks;
-using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class IhmController : MonoBehaviour
 {   
@@ -14,6 +13,7 @@ public class IhmController : MonoBehaviour
     public float time = 180f;
     private bool isPaused = false;
     public GameObject chronoImage;
+    public Image imageChrono;
     private Coroutine chronoCoroutine;
 
     [SerializeField]
@@ -46,7 +46,13 @@ public class IhmController : MonoBehaviour
     [SerializeField]
     DaggerController daggerController;
 
-    
+    public float timeRate
+    {
+        get
+        {
+            return time / 180f;
+        }
+    }
 
     
     void Awake()
@@ -101,9 +107,9 @@ public class IhmController : MonoBehaviour
     // Démarre le chronomètre
     public void StartChrono(float startTime)
     {
-        time = startTime; // Réinitialise le temps
-        UpdateTimerText(); // Mise à jour immédiate de l'affichage
-        isPaused = false; // Assurez-vous que le chrono n'est pas en pause
+        time = startTime; 
+        UpdateTimerText(); 
+        isPaused = false; 
 
         if (chronoCoroutine != null)
         {
@@ -152,6 +158,7 @@ public class IhmController : MonoBehaviour
     private void UpdateTimerText()
     {
         timerText.text = string.Format("{0:0}:{1:00}", Mathf.Floor(time / 60), time % 60);
+        FillTheTimer();
     }   
 
     public void ChronoPause(bool pauseStatus)
@@ -179,4 +186,9 @@ public class IhmController : MonoBehaviour
     {
         score.text = "Kill: " + scoreValue.ToString();
     }   
+
+    public void FillTheTimer()
+    {
+        imageChrono.fillAmount = timeRate;
+    }
 }

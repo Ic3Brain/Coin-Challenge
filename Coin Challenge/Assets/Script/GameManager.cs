@@ -68,17 +68,16 @@ public class GameManager : MonoBehaviour
         chronometer.elapsedTime = 0;
         chronometer.OnApplicationPause(false);
         ihmController.StopChrono();
-        ihmController.StartChrono(180);
+        ihmController.StartChrono(10);
         sunRotation.StartSunRotation();
         IhmController.scoreValue = 0;
         playerController.player.SetActive(true);
         ihmController.freeLookCamera.Unlock();
-
+        IhmController.instance.FillTheTimer();
         enemies = FindObjectsOfType<EnemyAi>();
 
         foreach(EnemyAi enemy in enemies)
         {
-            //StopAllCoroutines();
             StartCoroutine(enemy.PatrolingCorout());
         }
     }

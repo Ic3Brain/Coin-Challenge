@@ -20,6 +20,8 @@ public class EnemyAi : MonoBehaviour
     public float sightRange, attackRange;
     public bool meatInSightRange;
     public int attackDamage = 25;
+    public float chaseSpeed = 10f;
+    public float normalSpeed = 1f;
     public Transform weapon;
     
     [SerializeField]
@@ -76,17 +78,13 @@ public class EnemyAi : MonoBehaviour
     {
         LookForMeat();
     }
-
-
-    
-    
-        
     
 
     //Avance ou il peut avancer
     public IEnumerator PatrolingCorout()
     {   
-        
+        agent.speed = normalSpeed;
+
         do
         {   
 
@@ -148,6 +146,7 @@ public class EnemyAi : MonoBehaviour
     //Va a la position du player
     private IEnumerator ChasePlayerCorout()
     {   
+        agent.speed = chaseSpeed;
         
         Vector3 distanceToWalkPoint;
         do 
@@ -162,13 +161,13 @@ public class EnemyAi : MonoBehaviour
         while(distanceToWalkPoint.magnitude > 1.5f && playerInSightRange);
         
         if(playerInAttackRange)
-        {
+        {  
             StartCoroutine(AttackPlayerCorout());
         }
         else 
         
         if(!playerInSightRange)
-        {
+        {   
             StartCoroutine(PatrolingCorout());
         }
     }
@@ -177,18 +176,18 @@ public class EnemyAi : MonoBehaviour
     private IEnumerator AttackPlayerCorout()
     {   
         Collider[] hitPlayers;
-
+        
         do
        {    
             transform.LookAt(player);
 
             hitPlayers = Physics.OverlapSphere(weapon.transform.position, attackRange, whatIsPlayer);
-            Debug.Log(hitPlayers.Count());
+            
             foreach (Collider playerCollider in hitPlayers)
             {   
                 SFXAudioSource.clip = attack;
                 SFXAudioSource.Play();
-                Debug.Log(playerCollider.gameObject.name);
+                
                 HealthManager player = playerCollider.transform.root.GetComponent<HealthManager>();
                 if (player != null)
                 {
