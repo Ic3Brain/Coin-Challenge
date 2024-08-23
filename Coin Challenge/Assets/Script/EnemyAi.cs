@@ -137,10 +137,25 @@ public class EnemyAi : MonoBehaviour
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
 
-        walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        /*walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
         
         if(Physics.Raycast(walkpoint, -transform.up, 2f, whatIsGround))
-        walkPointSet = true;
+        walkPointSet = true;*/
+
+    Vector3 randomPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+    
+    NavMeshHit hit;
+    
+        if (NavMesh.SamplePosition(randomPoint, out hit, walkPointRange, NavMesh.AllAreas))
+        {
+            walkpoint = hit.position;
+            walkPointSet = true;
+        }
+        else
+        {
+            walkPointSet = false;
+        }
     }
 
     //Va a la position du player

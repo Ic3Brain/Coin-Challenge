@@ -48,11 +48,20 @@ public class Toolbar : MonoBehaviour {
     {
         return slotIndex;
     }
+
+    public MeatCollectable GetCurrentMeatItem()
+    {
+        if (slotIndex >= 0 && slotIndex < itemSlots.Length)
+        {
+            return itemSlots[slotIndex].meatItem;
+        }
+        return null;
+    }
 }
 
 [System.Serializable]
-public class ItemSlot {
-
+public class ItemSlot 
+{
     public Image icon;
-
+    public MeatCollectable meatItem;
 }

@@ -9,6 +9,9 @@ public class PlayerDropMeat : MonoBehaviour
     [SerializeField]
     Toolbar toolbar;
 
+    [SerializeField]
+    CollectingMeat collectingMeat;
+
     public float meatSpawnCooldown = 2f; 
     public bool canSpawnMeat = true;
     
@@ -23,14 +26,22 @@ public class PlayerDropMeat : MonoBehaviour
     {   
 
         int currentSlotIndex = toolbar.GetCurrentSlotIndex();
+        MeatCollectable selectedMeat = toolbar.GetCurrentMeatItem();
 
         if(Input.GetMouseButtonDown(1))
         {   
-            if(!canSpawnMeat)
+            if (!canSpawnMeat)
             {
                 return;
             }
+            
+            if (selectedMeat == null || selectedMeat.score > CollectingMeat.instance.meatCount)
+            {
+                return;
+            }
+            
             randomMeatSpawner.SpawnMeat(currentSlotIndex, false, transform.position);
+            CollectingMeat.instance.meatCount -= selectedMeat.score;
             StartCoroutine(StartCooldown());
         }   
     }
