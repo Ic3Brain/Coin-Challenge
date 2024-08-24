@@ -21,12 +21,6 @@ public class PassiveMobAI : MonoBehaviour
 	[SerializeField]
 	Animator animator;
 
-	[SerializeField]
-    AudioClip fleeing;
-
-    [SerializeField]
-    AudioSource SFXAudioSource;
-
 	
 
 	public float fov;
@@ -107,7 +101,6 @@ public class PassiveMobAI : MonoBehaviour
 	IEnumerator GoToPosition(Vector3 position)
 	{
 		bool _isFleeing = false;
-
 		agent.SetDestination(walkpoint);
 
 		while (agent.pathPending)
@@ -119,8 +112,6 @@ public class PassiveMobAI : MonoBehaviour
 			yield break;
 		}
 
-		Vector3 distanceToWalkPoint;
-		//animator.SetFloat("ForwardMove", 0.5f);
 
 		do
 		{
@@ -132,15 +123,12 @@ public class PassiveMobAI : MonoBehaviour
 			}
 
 			agent.speed = currentSpeed;
-
-			distanceToWalkPoint = transform.position - walkpoint;
 			yield return null;
 
 		}
-		while (distanceToWalkPoint.magnitude > 1f);
-
+		while (agent.remainingDistance > 0.1f);
 		
-		//animator.SetFloat("ForwardMove", 0f);
+		
 	}
 
 	//Detecte le player si il est in range
@@ -150,15 +138,13 @@ public class PassiveMobAI : MonoBehaviour
 		Collider[] targetsInFOV = Physics.OverlapSphere(transform.position, fov, whatIsPlayer);
 
 		foreach (Collider c in targetsInFOV)
-		{	
+		{
 			if (c.CompareTag("Player"))
-			{	
+			{
 				float signedAngle = Vector3.Angle(transform.forward, c.transform.position - transform.position);
 
 				if (Mathf.Abs(signedAngle) < fovAngle / 2)
 					playerInFOV = true;
-					SFXAudioSource.clip = fleeing;
-       				SFXAudioSource.Play();
 				break;
 			}
 		}

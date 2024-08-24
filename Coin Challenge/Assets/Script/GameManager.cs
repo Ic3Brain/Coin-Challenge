@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
         ihmController.freeLookCamera.Unlock();
         IhmController.instance.FillTheTimer();
         enemies = FindObjectsOfType<EnemyAi>();
+        ihmController.chronoImage.SetActive(true);
 
         foreach(EnemyAi enemy in enemies)
         {

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8644832233081940114}
   - component: {fileID: 166324208058175558}
   - component: {fileID: 6483064111054994784}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,9 +401,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 2114203405782154499, guid: 9169182cb9c233648a2a15474e0a00fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2613428629719313768, guid: 9169182cb9c233648a2a15474e0a00fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8840142470456418543, guid: 9169182cb9c233648a2a15474e0a00fb, type: 3}
       propertyPath: m_Name
       value: TreeLogOakB
+      objectReference: {fileID: 0}
+    - target: {fileID: 8840142470456418543, guid: 9169182cb9c233648a2a15474e0a00fb, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -432,9 +444,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1513182202278265635}
     m_Modifications:
+    - target: {fileID: 919132147884041991, guid: a6105fc98b9ec774fa5c18a2b9b071de, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5959178918153061033, guid: a6105fc98b9ec774fa5c18a2b9b071de, type: 3}
       propertyPath: m_Name
       value: SWFModA
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959178918153061033, guid: a6105fc98b9ec774fa5c18a2b9b071de, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599531733819615540, guid: a6105fc98b9ec774fa5c18a2b9b071de, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7400655631211887255, guid: a6105fc98b9ec774fa5c18a2b9b071de, type: 3}
       propertyPath: m_LocalScale.x
@@ -506,9 +530,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1513182202278265635}
     m_Modifications:
+    - target: {fileID: 919132147884041991, guid: a6105fc98b9ec774fa5c18a2b9b071de, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5959178918153061033, guid: a6105fc98b9ec774fa5c18a2b9b071de, type: 3}
       propertyPath: m_Name
       value: SWFModA (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959178918153061033, guid: a6105fc98b9ec774fa5c18a2b9b071de, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599531733819615540, guid: a6105fc98b9ec774fa5c18a2b9b071de, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7400655631211887255, guid: a6105fc98b9ec774fa5c18a2b9b071de, type: 3}
       propertyPath: m_LocalScale.x

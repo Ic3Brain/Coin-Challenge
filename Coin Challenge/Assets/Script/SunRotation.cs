@@ -4,8 +4,8 @@ using UnityEngine;
 public class SunRotation : MonoBehaviour
 {
     public float duration = 180f; // Duration in seconds (3 minutes)
-    public float startRotationX = 0f; // Starting x rotation
-    public float endRotationX = 50f; // Ending x rotation
+    public float startRotationX = 5f; // Starting x rotation
+    public float endRotationX = 30f; // Ending x rotation
 
     private Light lightSource;
 

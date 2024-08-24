@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6744325215469037495}
   - component: {fileID: 8155670560440638284}
   - component: {fileID: 7308072770693184795}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 390025534891995837}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TreeLogOakB 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,6 +254,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d035b4713ea22e947880b592698aaa2a, type: 3}
       propertyPath: m_Name
       value: TreeLogOakB
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d035b4713ea22e947880b592698aaa2a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

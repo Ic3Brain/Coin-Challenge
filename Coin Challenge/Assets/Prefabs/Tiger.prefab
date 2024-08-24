@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 3065813591906842684}
-  player: {fileID: 0}
+  player: {fileID: 5407890563052415430, guid: 70899f00419bc01429e2698e7160e96c, type: 3}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
@@ -259,7 +259,7 @@ MonoBehaviour:
   normalSpeed: 1
   weapon: {fileID: 2006677070268930913}
   animator: {fileID: 9059862833035630047}
-  healthManager: {fileID: 0}
+  healthManager: {fileID: 8647356901350095478, guid: 70899f00419bc01429e2698e7160e96c, type: 3}
   attack: {fileID: 8300000, guid: 78011a33e08cb1846abb429d5adaf536, type: 3}
   SFXAudioSource: {fileID: 3764593058585409537}
 --- !u!114 &4706527295174288910

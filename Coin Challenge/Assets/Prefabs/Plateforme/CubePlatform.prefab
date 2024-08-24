@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3898590184389960628}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CubePlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8235650684109634617}
   - component: {fileID: 2641140230206764293}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AnimCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 8072608274546527142}
   - component: {fileID: 6565188381583239951}
   - component: {fileID: 5760040009265325548}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

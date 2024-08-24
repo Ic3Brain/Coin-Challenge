@@ -3,29 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class QuadranSystem : MonoBehaviour
-{   
+{
 
-    Dictionary<Vector2Int, Quadran> _quadranDico;
+	Dictionary<Vector2Int, Quadran> _quadranDico;
 	public List<Quadran> _quadrans = new List<Quadran>();
-    
-    Vector2 quadranSize;
-	Vector2 areaSize;    
 
-    [SerializeField] Transform anchor, anchor1;
+	Vector2 quadranSize;
+	Vector2 areaSize;
 
-    public static QuadranSystem instance;
+	[SerializeField] Transform anchor, anchor1;
 
-    void Awake()
-    {   
-        instance = this;
-        InitQuadrans();
-    }
-    
+	public static QuadranSystem instance;
 
-    public void InitQuadrans()
-	{	
-		if(_quadranDico != null)
-		return;
+	void Awake()
+	{
+		instance = this;
+		InitQuadrans();
+	}
+
+
+	public void InitQuadrans()
+	{
+		if (_quadranDico != null)
+			return;
 		_quadranDico = new Dictionary<Vector2Int, Quadran>();
 
 		areaSize = new Vector2(anchor1.position.x - anchor.position.x, anchor1.position.z - anchor.position.z);
@@ -44,7 +44,7 @@ public class QuadranSystem : MonoBehaviour
 
 
 
-    public Vector3 SearchWalkPoint(bool PlayerInRange, Vector3 currentPos)
+	public Vector3 SearchWalkPoint(bool PlayerInRange, Vector3 currentPos)
 	{
 		Vector2Int quadranOffset = Vector2Int.zero;
 
@@ -100,11 +100,17 @@ public class QuadranSystem : MonoBehaviour
 
 		Quadran _quadran;
 		_quadranDico.TryGetValue(_coord, out _quadran);
+
+		if (_quadran == null)
+		{
+			_quadranDico.TryGetValue(Vector2Int.zero, out _quadran);
+		}
+
 		return _quadran;
 	}
 
 
-    [System.Serializable]
+	[System.Serializable]
 	public class Quadran
 	{
 		public Quadran(Vector2Int _coords, Vector2 size, Vector3 minAnchor)
