@@ -126,7 +126,8 @@ public class PassiveMobAI : MonoBehaviour
 			yield return null;
 
 		}
-		while (agent.remainingDistance > 0.1f);
+		while (agent.isActiveAndEnabled &&  agent.remainingDistance > 0.1f);
+		//while (agent.remainingDistance > 0.1f);
 		
 		
 	}
