@@ -1,10 +1,13 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.ProBuilder.Shapes;
 
 
 public class PlayerAttractionFxCtrl : MonoBehaviour
 {
+	public static PlayerAttractionFxCtrl instance;
+
 	[SerializeField]
 	Material _mat;
 	Material _matInst;
@@ -16,7 +19,10 @@ public class PlayerAttractionFxCtrl : MonoBehaviour
 
 	[SerializeField] ParticleSystem _particles;
 
-
+	private void Awake()
+	{
+		instance = this;
+	}
 
 	// Start is called before the first frame update
 	void Start()
@@ -41,7 +47,7 @@ public class PlayerAttractionFxCtrl : MonoBehaviour
 		while (t < 1.1f)
 		{
 			_matInst.SetFloat("_rate", Mathf.Lerp(0f, 1f, t));
-			t += Time.deltaTime;
+			t += Time.deltaTime * 0.5f;
 			yield return null;
 		}
 
@@ -58,24 +64,33 @@ public class PlayerAttractionFxCtrl : MonoBehaviour
 
 	public Coroutine FadeOut()
 	{
-    	return StartCoroutine(FadeOutCorout());
+		return StartCoroutine(FadeOutCorout());
 	}
-
-	IEnumerator FadeOutCorout()
+	 IEnumerator FadeOutCorout()
 	{
-    	float t = 0;
 
-    while (t < 1.1f)
-    {
-        _matInst.SetFloat("_rate", Mathf.Lerp(1f, 0f, t));
-        t += Time.deltaTime;
-        yield return null;
-    }
+		_particles.gameObject.SetActive(false);
 
-    	_sphere.transform.localScale = Vector3.one;
-    	_sphere.transform.localPosition = Vector3.zero;
-    	yield return StartCoroutine(SetSize(playerMesh, Vector3.one, 3f));
-    	_particles.gameObject.SetActive(false);
+		_sphere.transform.position = transform.position + new Vector3(0, 0.5f, 0);
+		_sphere.transform.localScale = Vector3.one;
+		yield return StartCoroutine(SetSize(_sphere, new Vector3(1.2f, 4.2f, 1.2f), 4f));
+		playerMesh.transform.localScale = Vector3.one;
+		StartCoroutine(SetSize(_sphere, new Vector3(0.3f, 0.3f, 0.3f), 3f));
+
+		_sphere.transform.SetParent(this.transform);
+
+		_particles.gameObject.SetActive(true);
+
+		float t = 0;
+
+		while (t < 1f)
+		{
+			_matInst.SetFloat("_rate", Mathf.Lerp(1f, 0f, t));
+			t += Time.deltaTime * 0.5f;
+			yield return null;
+		}
+		_sphere.SetActive(false);
+		RemoveMaterialFromAllRend();
 	}
 
 	IEnumerator SetSize(GameObject _go, Vector3 _targetScale, float speed)
@@ -92,6 +107,11 @@ public class PlayerAttractionFxCtrl : MonoBehaviour
 
 	}
 
+	// Update is called once per frame
+	void Update()
+	{
+
+	}
 
 	void GetAllRenderers()
 	{
@@ -110,5 +130,21 @@ public class PlayerAttractionFxCtrl : MonoBehaviour
 
 			rend.materials = mats;
 		}
+	}
+
+	void RemoveMaterialFromAllRend()
+	{
+		Material[] mats = new Material[1];
+
+		foreach (var rend in _rends)
+		{
+			mats[0] = rend.materials[0];
+			rend.materials = mats;
+		}
+	}
+
+	public void OnEnterPortalReached()
+	{
+		_particles.gameObject.SetActive(false);
 	}
 }

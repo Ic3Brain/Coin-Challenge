@@ -1,8 +1,14 @@
+using Cinemachine;
 using System.Collections;
 using UnityEngine;
 
 public class PortalAttract : MonoBehaviour
 {
+
+	public float attractionForce = 10;
+	public float maxDistance = 100;
+	public float actualDistance;
+	public bool _readDebugInput;
 
 	[SerializeField]
 	Rigidbody rb;
@@ -10,12 +16,27 @@ public class PortalAttract : MonoBehaviour
 	[SerializeField]
 	PortalAttract targetPortal;
 
-	[SerializeField] PlayerAttractionFxCtrl _fxCtrl;
 
+	[SerializeField] LayerMask layerMask;
 
-	
+	PlayerAttractionFxCtrl _fxCtrl;
+
+	CinemachineBrain brain;
+	private void Start()
+	{
+		_fxCtrl = PlayerAttractionFxCtrl.instance;
+		//Get the Live vCam
+		brain = CinemachineCore.Instance.GetActiveBrain(0);
+	}
+
+	private void Update()
+	{
+		if (_readDebugInput && Input.GetKeyDown(KeyCode.Space)) AttrackToPortal();
+	}
+
 	public void AttrackToPortal()
 	{
+
 		StartCoroutine(AttrackPortalCorrout());
 	}
 
@@ -60,17 +81,37 @@ public class PortalAttract : MonoBehaviour
 		}
 		while (_dist > 0.5f);
 
-        rb.transform.position = targetPortal.transform.position;
-        targetPortal.StartCoroutine(targetPortal.ExpulseCorrout());
+
+
+		targetPortal.StartCoroutine(targetPortal.ExpulseCorrout());
 	}
 
 	//Redonne la taille normal au player
 	IEnumerator ExpulseCorrout()
 	{
+		_fxCtrl.OnEnterPortalReached();
+		rb.transform.position = transform.position;
+
+		GameObject _activeCam = brain.ActiveVirtualCamera.VirtualCameraGameObject;
+		_activeCam.SetActive(false);
+		yield return null;
+		_activeCam.SetActive(true);
+
+		float t = 0;
+		float size;
+
+		while (t < 1.1f)
+		{
+			t += Time.deltaTime;
+			size = Mathf.Lerp(0, 1, t);
+			rb.transform.localScale = new Vector3(size, size, size);
+			yield return null;
+		}
+
 		yield return _fxCtrl.FadeOut();
-		
-		rb.isKinematic = false;
+
 		rb.velocity = Vector3.zero;
 		rb.useGravity = true;
+		rb.isKinematic = false;
 	}
 }

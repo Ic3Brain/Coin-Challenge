@@ -4839,7 +4839,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8651037050639226602}
-  - component: {fileID: 3621895509899568758}
+  - component: {fileID: 4250171648843264187}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -4863,7 +4863,7 @@ Transform:
   - {fileID: 8382916651036365933}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3621895509899568758
+--- !u!114 &4250171648843264187
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4872,16 +4872,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6437243934159528707}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64407015272552e47a43358141bc3a0b, type: 3}
+  m_Script: {fileID: 11500000, guid: 5befef4da576f7d478f0fadcf5e72e86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attractionForce: 50
-  maxDistance: 500
+  attractionForce: 10
+  maxDistance: 100
   actualDistance: 0
+  _readDebugInput: 0
   rb: {fileID: 0}
-  startShrinkingDist: 20
-  targetPortal: {fileID: 0}
-  playerController: {fileID: 0}
+  startShrinkingDist: 10
+  targetPortal: {fileID: 4250171648843264187}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &6657578394874382950
 GameObject:
   m_ObjectHideFlags: 0
