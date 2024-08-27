@@ -88,7 +88,7 @@ public class PortalAttract : MonoBehaviour
 
 	//Redonne la taille normal au player
 	IEnumerator ExpulseCorrout()
-	{
+	{Debug.Log("expulse corout");
 		_fxCtrl.OnEnterPortalReached();
 		rb.transform.position = transform.position;
 

@@ -63,12 +63,10 @@ MonoBehaviour:
   walkpoint: {x: 0, y: 0, z: 0}
   walkPointRange: 50
   animator: {fileID: 8016351635781249963}
-  fleeing: {fileID: 8300000, guid: fef7578f01ec3844bb6a78e8cb9b72a1, type: 3}
-  SFXAudioSource: {fileID: 8019479920951487950}
   fov: 15
   alertStage: 1
   alertLevel: 0
-  fovAngle: 123
+  fovAngle: 100
 --- !u!114 &6299491193143134885
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -127,8 +127,6 @@ public class PassiveMobAI : MonoBehaviour
 
 		}
 		while (agent.isActiveAndEnabled &&  agent.remainingDistance > 0.1f);
-		//while (agent.remainingDistance > 0.1f);
-		
 		
 	}
 
