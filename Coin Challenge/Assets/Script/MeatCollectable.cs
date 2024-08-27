@@ -8,7 +8,7 @@ public class MeatCollectable : MonoBehaviour, ICollectable
     public int score;
 
     [SerializeField]
-    Collider trigger;
+    Collider trigger; 
 
     public float eatDuration = 4f;
 
