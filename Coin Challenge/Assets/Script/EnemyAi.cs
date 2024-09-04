@@ -16,9 +16,9 @@ public class EnemyAi : MonoBehaviour
     HealthManager playerHealthManager;
     public float sightRange, attackRange;
     public bool meatInSightRange;
-    public int attackDamage = 25;
-    public float chaseSpeed = 10f;
-    public float normalSpeed = 1f;
+    //public int attackDamage = 25;
+    //public float chaseSpeed = 10f;
+    //public float normalSpeed = 1f;
     public Transform weapon;
     
     [SerializeField]
@@ -34,6 +34,9 @@ public class EnemyAi : MonoBehaviour
 
     [SerializeField]
     AudioSource SFXAudioSource;
+    
+    [SerializeField]
+    TigerSettings tigerSettings;
     
     
 
@@ -80,7 +83,7 @@ public class EnemyAi : MonoBehaviour
     //Avance ou il peut avancer
     public IEnumerator PatrolingCorout()
     {   
-        agent.speed = normalSpeed;
+        agent.speed = tigerSettings.normalSpeed;
 
         do
         {   
@@ -158,7 +161,7 @@ public class EnemyAi : MonoBehaviour
     //Va a la position du player
     private IEnumerator ChasePlayerCorout()
     {   
-        agent.speed = chaseSpeed;
+        agent.speed = tigerSettings.chaseSpeed;
         
         Vector3 distanceToWalkPoint;
         do 
@@ -203,7 +206,7 @@ public class EnemyAi : MonoBehaviour
                 HealthManager player = playerCollider.transform.root.GetComponent<HealthManager>();
                 if (player != null)
                 {
-                    healthManager.RemoveHealth(attackDamage);
+                    healthManager.RemoveHealth(tigerSettings.attackDamage);
                     if(!healthManager.IsAlive)
                     yield break;
                 }

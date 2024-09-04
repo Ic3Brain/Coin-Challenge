@@ -254,14 +254,12 @@ MonoBehaviour:
   sightRange: 10
   attackRange: 3
   meatInSightRange: 0
-  attackDamage: 25
-  chaseSpeed: 10
-  normalSpeed: 1
   weapon: {fileID: 2006677070268930913}
   animator: {fileID: 9059862833035630047}
   healthManager: {fileID: 8647356901350095478, guid: 70899f00419bc01429e2698e7160e96c, type: 3}
   attack: {fileID: 8300000, guid: 78011a33e08cb1846abb429d5adaf536, type: 3}
   SFXAudioSource: {fileID: 3764593058585409537}
+  tigerSettings: {fileID: 11400000, guid: 34e19289f1969794cb2b347fcb24e3e0, type: 2}
 --- !u!114 &4706527295174288910
 MonoBehaviour:
   m_ObjectHideFlags: 0

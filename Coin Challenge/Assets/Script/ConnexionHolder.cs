@@ -20,7 +20,7 @@ public class ConnexionHolder : MonoBehaviour
     
     void Update()
     {
-
+        GetData();
     }
 
     public void GetData()

@@ -20,7 +20,10 @@ public class LoadEndGameLoader : MonoBehaviour
 
     void Update()
     {
-
+        if(Input.GetKeyDown(KeyCode.Y))
+        {
+            SceneManager.LoadScene(2);
+        }
     }
 
 
